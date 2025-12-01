@@ -13,7 +13,6 @@ public class Main {
 				try {
 					
 					Marco miVentana = new Marco();
-					miVentana.setSize(1200, 800);
 					miVentana.setVisible(true);
 					
 				}catch(Exception e) {
