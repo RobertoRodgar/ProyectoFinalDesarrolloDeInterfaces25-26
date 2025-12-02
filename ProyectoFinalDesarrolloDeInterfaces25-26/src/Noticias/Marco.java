@@ -1,12 +1,15 @@
 package Noticias;
 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
 
 public class Marco extends JFrame{
-	public Marco() {
+	ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
+	public Marco(ArrayList<Usuario> listaUsuarios) {
 		setTitle("Noticias");
 		setBounds(100,100,800,600);
 		setResizable(false);
@@ -14,7 +17,7 @@ public class Marco extends JFrame{
 		
 		
 
-		JPanel iniciarSesion = new iniciarSesion(this);
+		JPanel iniciarSesion = new iniciarSesion(this, listaUsuarios);
 		add(iniciarSesion);
 	}
 }
