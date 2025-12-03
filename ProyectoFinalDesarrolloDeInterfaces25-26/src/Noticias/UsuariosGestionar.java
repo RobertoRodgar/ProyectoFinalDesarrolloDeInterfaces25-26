@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class UsuariosGestionar {
-	File archivoUsuarios = new File("Extras/usuarios.txt");
+	File archivoUsuarios = new File("Extras/TXTs/usuarios.txt");
 	
 	public ArrayList<Usuario> crearUsuarios(ArrayList<Usuario> listaUsuarios) {
 		try(FileOutputStream fos = new FileOutputStream(archivoUsuarios); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
