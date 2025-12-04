@@ -1,5 +1,7 @@
 package Noticias;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
@@ -17,5 +19,13 @@ public class Operaciones {
 			campoContraseña.setEchoChar((char) 0);
 			botonOcultarContrasena.setIcon(ocultar);
 		}
+	}
+	public Usuario comprobarUsuario(String nombreUsuario, String contrasena, ArrayList<Usuario> listaUsuarios) {
+		for(Usuario usuario : listaUsuarios) {
+			if(usuario.getNombre().equals(nombreUsuario) && usuario.getContrasena().equals(contrasena)) {
+				return usuario;
+			}
+		}
+		return null;
 	}
 }

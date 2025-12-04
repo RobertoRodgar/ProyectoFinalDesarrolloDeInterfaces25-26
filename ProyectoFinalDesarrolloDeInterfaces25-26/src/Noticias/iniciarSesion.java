@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class iniciarSesion extends JPanel{
 	private JLabel titulo;
@@ -23,12 +24,13 @@ public class iniciarSesion extends JPanel{
 	private JPasswordField campoContrasena;
 	private JButton botonIniciarSesion;
 	private Operaciones operaciones = new Operaciones();
-	private JFrame framePrincipal;
+
 	private JButton botonOcultarContrasena;
 	private ImageIcon mostrar = new ImageIcon("Extras/Imagenes/OjoAbierto.png");
+	private Usuario usuarioIniciado;
+	JLabel errorInicio;
 	
-	public iniciarSesion(JFrame frame, ArrayList<Usuario> listaUsuarios) {
-		this.framePrincipal = frame;
+	public iniciarSesion(Marco frame, ArrayList<Usuario> listaUsuarios) {
 		setBounds(100,100,800,600);
 		setLayout(null);
 		
@@ -67,6 +69,11 @@ public class iniciarSesion extends JPanel{
 		});
 		add(botonOcultarContrasena);
 		
+		errorInicio = new JLabel("");
+		errorInicio.setForeground(new Color(255, 0, 0));
+		errorInicio.setHorizontalAlignment(SwingConstants.CENTER);
+		errorInicio.setBounds(246, 304, 296, 14);
+		add(errorInicio);
 		
 		botonIniciarSesion = new JButton("INICIAR SESIÓN");
 		botonIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -74,7 +81,22 @@ public class iniciarSesion extends JPanel{
 		botonIniciarSesion.setBackground(new Color(0, 128, 255));
 		botonIniciarSesion.setBounds(309, 327, 165, 32);
 		botonIniciarSesion.setFocusPainted(false);
+		botonIniciarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nombreUsuario = campoUsuario.getText();
+				String contrasena = new String(campoContrasena.getPassword());
+				usuarioIniciado = operaciones.comprobarUsuario(nombreUsuario, contrasena, listaUsuarios);
+				if(usuarioIniciado == null) {
+					errorInicio.setText("Error. El usuario o la contraseña no son correctos.");
+				}else if(usuarioIniciado.getEsAdmin()) {
+					errorInicio.setText("");
+					frame.mostrarPantallaAdmin(usuarioIniciado);
+				}
+			}
+		});
 		add(botonIniciarSesion);
+		
+		
 		
 	}
 }

@@ -12,8 +12,9 @@ public class Main {
 			@Override
 			public void run() {
 				try {
-					//UsuariosGestionar gestion = new UsuariosGestionar();
-					//listaUsuarios = gestion.crearUsuarios(listaUsuarios);
+					//PantallaCarga ventanaCarga = new PantallaCarga();
+					UsuariosGestionar gestion = new UsuariosGestionar();
+					listaUsuarios = gestion.iniciarUsuarios(listaUsuarios);
 					Marco miVentana = new Marco(listaUsuarios);
 					miVentana.setVisible(true);
 					
