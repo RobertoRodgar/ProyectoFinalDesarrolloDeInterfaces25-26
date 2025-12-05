@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+//import javax.swing.JTextField;
 
 public class Operaciones {
 	private ImageIcon mostrar = new ImageIcon("Extras/Imagenes/OjoAbierto.png");

@@ -12,11 +12,11 @@ public class Main {
 			@Override
 			public void run() {
 				try {
-					//PantallaCarga ventanaCarga = new PantallaCarga();
-					UsuariosGestionar gestion = new UsuariosGestionar();
-					listaUsuarios = gestion.iniciarUsuarios(listaUsuarios);
-					Marco miVentana = new Marco(listaUsuarios);
-					miVentana.setVisible(true);
+					PantallaCarga ventanaCarga = new PantallaCarga(listaUsuarios);
+					ventanaCarga.setLocationRelativeTo(null);
+					ventanaCarga.setVisible(true);
+					
+					
 					
 				}catch(Exception e) {
 					e.printStackTrace();

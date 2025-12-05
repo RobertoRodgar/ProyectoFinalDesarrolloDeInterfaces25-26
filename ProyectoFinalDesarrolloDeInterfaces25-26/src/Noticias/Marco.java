@@ -25,21 +25,22 @@ public class Marco extends JFrame{
 		contentPane = new JPanel(cardLayout);
         setContentPane(contentPane);
 
-        
 		iniciarSesion = new iniciarSesion(this, listaUsuarios);
 		pantallaAdminInicio = new pantallaAdminInicio(this);
+		
 		
 		contentPane.add(iniciarSesion, "IniciarSesion");
         contentPane.add(pantallaAdminInicio, "PantallaInicioAdmin");
 		
-		cardLayout.show(contentPane, "IniciarSesion");
+        cardLayout.show(contentPane, "IniciarSesion");
+
 		
 	}
 	
 	
 	
 	public void mostrarPantallaInicio() {
-		
+		cardLayout.show(contentPane, "IniciarSesion");
 	}
 	
 	public void mostrarPantallaAdmin(Usuario usuario) {
