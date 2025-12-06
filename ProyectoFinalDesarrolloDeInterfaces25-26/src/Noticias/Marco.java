@@ -14,6 +14,7 @@ public class Marco extends JFrame{
 	JPanel contentPane;
 	iniciarSesion iniciarSesion;
 	pantallaAdminInicio pantallaAdminInicio;
+	pantallaAcercaDe pantallaAcercaDe;
 	
 	public Marco(ArrayList<Usuario> listaUsuarios) {
 		setTitle("Noticias");
@@ -27,10 +28,11 @@ public class Marco extends JFrame{
 
 		iniciarSesion = new iniciarSesion(this, listaUsuarios);
 		pantallaAdminInicio = new pantallaAdminInicio(this);
-		
+		pantallaAcercaDe = new pantallaAcercaDe(this);
 		
 		contentPane.add(iniciarSesion, "IniciarSesion");
         contentPane.add(pantallaAdminInicio, "PantallaInicioAdmin");
+        contentPane.add(pantallaAcercaDe, "PantallaAcercaDe");
 		
         cardLayout.show(contentPane, "IniciarSesion");
 
@@ -46,5 +48,13 @@ public class Marco extends JFrame{
 	public void mostrarPantallaAdmin(Usuario usuario) {
 		pantallaAdminInicio.establecerUsuario(usuario);
 		cardLayout.show(contentPane, "PantallaInicioAdmin");
+	}
+	
+	public void mostrarPantallaAdminVolver() {
+		cardLayout.show(contentPane, "PantallaInicioAdmin");
+	}
+	
+	public void mostrarPantallaAcercaDe() {
+		cardLayout.show(contentPane, "PantallaAcercaDe");
 	}
 }
