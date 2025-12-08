@@ -34,7 +34,7 @@ public class pantallaAcercaDe extends JPanel {
 		textoDesarrollador.setFont(new Font("Tahoma", Font.BOLD, 20));
 		add(textoDesarrollador);
 		
-		JButton botonVolver = new JButton("Volver");
+		botonVolver = new JButton("Volver");
 		botonVolver.setFont(new Font("Tahoma", Font.BOLD, 16));
 		botonVolver.setBounds(345, 406, 149, 38);
 		botonVolver.setContentAreaFilled(false);

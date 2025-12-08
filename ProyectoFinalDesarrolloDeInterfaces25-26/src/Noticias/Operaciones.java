@@ -43,4 +43,28 @@ public class Operaciones {
 		}
 		
 	}
+	public void mostrarPanelGestion(JPanel panelGestionar) {
+		if(!panelGestionar.isVisible()) {
+			panelGestionar.setVisible(true);
+		}else {
+			panelGestionar.setVisible(false);
+		}
+		
+	}
+	public void mostrarPanelCrear(JPanel panelCrear) {
+		if(!panelCrear.isVisible()) {
+			panelCrear.setVisible(true);
+		}else {
+			panelCrear.setVisible(false);
+		}
+		
+	}
+	public void mostrarPanelBorrar(JPanel panelBorrar) {
+		if(!panelBorrar.isVisible()) {
+			panelBorrar.setVisible(true);
+		}else {
+			panelBorrar.setVisible(false);
+		}
+		
+	}
 }

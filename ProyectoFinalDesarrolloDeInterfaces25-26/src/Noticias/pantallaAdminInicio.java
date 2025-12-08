@@ -14,18 +14,33 @@ import javax.swing.JButton;
 import java.awt.Color;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+import javax.swing.JTextField;
 
 public class pantallaAdminInicio extends JPanel{
 	private JFrame framePrincipal;
 	private Usuario usuario;
 	private JPanel panelCabecera;
-	JLabel cabeceraAdmin;
+	private JLabel cabeceraAdmin;
 	private JButton botonOpciones;
 	private ImageIcon fotoUsuario = new ImageIcon("Extras/Imagenes/fotoUsuario.png");
 	private JPanel panelOpciones;
 	private JPanel panelCuerpo;
-	JButton botonAcercaDe;
-	JButton botonCerrarSesion;
+	private JButton botonAcercaDe;
+	private JButton botonCerrarSesion;
+	private JButton botonGestionarUsuarios;
+	private JButton botonVerNoticias;
+	private JPanel panelGestionarUsuario;
+	private JLabel tituloPregunta;
+	private JButton botonCrear;
+	private JButton botonBorrar;
+	private JPanel panelCrear;
+	private JLabel titulosCrear;
+	private JTextField textosCrear;
+	private JButton botonSiguienteCrear;
+	private JPanel panelBorrar;
+	private JLabel titulosBorrar;
+	private JTextField textosBorrar;
+	private JButton botonSiguienteBorrar;
 	private Operaciones operaciones = new Operaciones();
 	private JLabel textotemp;
 	public pantallaAdminInicio(Marco frame) {
@@ -102,10 +117,103 @@ public class pantallaAdminInicio extends JPanel{
 		add(panelCuerpo);
 		panelCuerpo.setLayout(null);
 		
+		panelGestionarUsuario = new JPanel();
+		panelGestionarUsuario.setBackground(new Color(192, 192, 192));
+		panelGestionarUsuario.setBounds(201, 106, 385, 244);
+		panelGestionarUsuario.setLayout(null);
+		panelGestionarUsuario.setVisible(false);
+		panelCuerpo.add(panelGestionarUsuario);
+		
+		panelCrear = new JPanel();
+		panelCrear.setBackground(new Color(192, 192, 192));
+		panelCrear.setBounds(0, 0, 385, 244);
+		panelCrear.setLayout(null);
+		panelCrear.setVisible(false);
+		panelGestionarUsuario.add(panelCrear);
+		
+		titulosCrear = new JLabel("");
+		titulosCrear.setFont(new Font("Tahoma", Font.BOLD, 14));
+		titulosCrear.setHorizontalAlignment(SwingConstants.CENTER);
+		titulosCrear.setBounds(90, 26, 210, 35);
+		panelCrear.add(titulosCrear);
+		
+		textosCrear = new JTextField();
+		textosCrear.setBounds(90, 101, 210, 35);
+		panelCrear.add(textosCrear);
+		textosCrear.setColumns(10);
+		
+		botonSiguienteCrear = new JButton("Siguiente");
+		botonSiguienteCrear.setBounds(150, 171, 89, 23);
+		panelCrear.add(botonSiguienteCrear);
+		
+		panelBorrar = new JPanel();
+		panelBorrar.setBackground(new Color(192, 192, 192));
+		panelBorrar.setBounds(0, 0, 385, 244);
+		panelBorrar.setLayout(null);
+		panelBorrar.setVisible(false);
+		panelGestionarUsuario.add(panelBorrar);
+		
+		titulosBorrar = new JLabel("New label");
+		titulosBorrar.setBounds(90, 26, 210, 35);
+		panelBorrar.add(titulosBorrar);
+		
+		textosBorrar = new JTextField();
+		textosBorrar.setBounds(90, 101, 210, 35);
+		panelBorrar.add(textosBorrar);
+		textosBorrar.setColumns(10);
+		
+		botonSiguienteBorrar = new JButton("New button");
+		botonSiguienteBorrar.setBounds(150, 171, 89, 23);
+		panelBorrar.add(botonSiguienteBorrar);
+		
+		tituloPregunta = new JLabel("¿Que quieres hacer?");
+		tituloPregunta.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tituloPregunta.setHorizontalAlignment(SwingConstants.CENTER);
+		tituloPregunta.setBounds(82, 11, 217, 50);
+		panelGestionarUsuario.add(tituloPregunta);
+		
+		botonCrear = new JButton("Crear");
+		botonCrear.setFont(new Font("Tahoma", Font.BOLD, 14));
+		botonCrear.setBounds(32, 96, 134, 77);
+		botonCrear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				operaciones.mostrarPanelCrear(panelCrear);
+			}
+		});
+		panelGestionarUsuario.add(botonCrear);
+		
+		botonBorrar = new JButton("Borrar");
+		botonBorrar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		botonBorrar.setBounds(220, 96, 134, 77);
+		botonBorrar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				operaciones.mostrarPanelBorrar(panelBorrar);
+			}
+		});
+		panelGestionarUsuario.add(botonBorrar);
+		
 		textotemp = new JLabel();
 		textotemp.setBounds(42, 38, 89, 33);
 		panelCuerpo.add(textotemp);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{panelOpciones, botonAcercaDe, botonCerrarSesion, textotemp}));
+		
+		botonGestionarUsuarios = new JButton("Gestionar usuarios");
+		botonGestionarUsuarios.setFont(new Font("Tahoma", Font.BOLD, 16));
+		botonGestionarUsuarios.setBounds(128, 171, 195, 113);
+		botonGestionarUsuarios.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				operaciones.mostrarPanelGestion(panelGestionarUsuario);
+			}
+		});
+		panelCuerpo.add(botonGestionarUsuarios);
+		
+		botonVerNoticias = new JButton("Ver noticias");
+		botonVerNoticias.setFont(new Font("Tahoma", Font.BOLD, 16));
+		botonVerNoticias.setBounds(469, 171, 195, 113);
+		panelCuerpo.add(botonVerNoticias);
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{panelOpciones, botonAcercaDe, botonCerrarSesion, panelGestionarUsuario, tituloPregunta, botonCrear, botonBorrar, panelCrear, panelBorrar, titulosCrear, textosCrear, botonSiguienteCrear, titulosBorrar, textosBorrar, botonSiguienteBorrar}));
 		
 		
 	}
