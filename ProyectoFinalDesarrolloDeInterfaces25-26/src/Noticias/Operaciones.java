@@ -1,17 +1,24 @@
 package Noticias;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-//import javax.swing.JTextField;
+import javax.swing.JTextField;
+
 
 public class Operaciones {
 	private ImageIcon mostrar = new ImageIcon("Extras/Imagenes/OjoAbierto.png");
 	private ImageIcon ocultar = new ImageIcon("Extras/Imagenes/OjoCerrado.png");
-	
+	private String correo, contrasena, nombre, esAdmin, inicio;
+	private File archivoUsuarios = new File("Extras/TXTs/usuarios2.txt");
 	
 	public void ocultarContraseña(JPasswordField campoContraseña, char caracter, JButton botonOcultarContrasena) {
 		char campoActual = campoContraseña.getEchoChar();
@@ -43,6 +50,7 @@ public class Operaciones {
 		}
 		
 	}
+	
 	public void mostrarPanelGestion(JPanel panelGestionar) {
 		if(!panelGestionar.isVisible()) {
 			panelGestionar.setVisible(true);
@@ -51,6 +59,7 @@ public class Operaciones {
 		}
 		
 	}
+	
 	public void mostrarPanelCrear(JPanel panelCrear) {
 		if(!panelCrear.isVisible()) {
 			panelCrear.setVisible(true);
@@ -59,12 +68,76 @@ public class Operaciones {
 		}
 		
 	}
+	
 	public void mostrarPanelBorrar(JPanel panelBorrar) {
 		if(!panelBorrar.isVisible()) {
 			panelBorrar.setVisible(true);
 		}else {
 			panelBorrar.setVisible(false);
 		}
+	}
+	
+	public String agregarUsuario(int contador, JTextField campoTexto, JLabel titulos, JLabel textoError) {
+		switch (contador) {
+		case 0:
+			correo = campoTexto.getText();
+			campoTexto.setText("");
+			titulos.setText("Introduce la contraseña:");
+			break;
+		case 1:
+			contrasena = campoTexto.getText();
+			campoTexto.setText("");
+			titulos.setText("Introduce el nombre de usuario:");
+			break;
+		case 2:
+			nombre = campoTexto.getText();
+			campoTexto.setText("");
+			titulos.setText("Introduce si es admin o no (true / false):");
+			break;
+		case 3:
+			String texto = campoTexto.getText();
+		    
+		    if(texto.equals("true") || texto.equals("false")) {
+		        textoError.setText("");
+		        if(texto.equals("true")) {
+		            inicio = "1";
+		        } else {
+		            inicio = "0";
+		        }
+		        esAdmin = texto;
+		        campoTexto.setText("");
+		        titulos.setText("Introduce el correo:");
+		        return correo + ";" + contrasena + ";" + nombre + ";" + esAdmin + ";" + inicio;
+		        
+		    } else {
+		        textoError.setText("ERROR. Debes introducir 'true' o 'false'");
+		        return null;
+		    }
+		default:
+			break;
+		}
+		return null;
+	}
+	
+	public void escribirNuevoUsuario(String linea) {
+		ArrayList<String> lineas = new ArrayList<String>();
 		
+		try (BufferedReader br = new BufferedReader(new FileReader(archivoUsuarios))) {
+            String lineaTemp;
+            while ((lineaTemp = br.readLine()) != null) {
+                lineas.add(lineaTemp);
+            }
+        } catch (Exception e) {
+        	System.out.println("Ha ocurrido un error inesperado.");
+        }
+		lineas.add(linea);
+		try (FileWriter fw = new FileWriter(archivoUsuarios)) {
+            
+            for (String lineaEscribir : lineas) {
+                fw.write(lineaEscribir + "\n"); 
+            }
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error inesperado.");
+        }
 	}
 }

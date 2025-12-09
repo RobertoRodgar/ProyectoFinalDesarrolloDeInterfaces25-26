@@ -41,8 +41,12 @@ public class pantallaAdminInicio extends JPanel{
 	private JLabel titulosBorrar;
 	private JTextField textosBorrar;
 	private JButton botonSiguienteBorrar;
+	private JLabel textoError;
+	private JButton botonVolver;
 	private Operaciones operaciones = new Operaciones();
 	private JLabel textotemp;
+	private int contador = 0;
+	private JButton botonCerrarCrear;
 	public pantallaAdminInicio(Marco frame) {
 		this.framePrincipal = frame;
 		setBounds(100,100,800,600);
@@ -131,7 +135,7 @@ public class pantallaAdminInicio extends JPanel{
 		panelCrear.setVisible(false);
 		panelGestionarUsuario.add(panelCrear);
 		
-		titulosCrear = new JLabel("");
+		titulosCrear = new JLabel("Introduce el correo:");
 		titulosCrear.setFont(new Font("Tahoma", Font.BOLD, 14));
 		titulosCrear.setHorizontalAlignment(SwingConstants.CENTER);
 		titulosCrear.setBounds(90, 26, 210, 35);
@@ -144,7 +148,41 @@ public class pantallaAdminInicio extends JPanel{
 		
 		botonSiguienteCrear = new JButton("Siguiente");
 		botonSiguienteCrear.setBounds(150, 171, 89, 23);
+		botonSiguienteCrear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(contador >= 3) {
+					String linea;
+					linea = operaciones.agregarUsuario(contador, textosCrear, titulosCrear, textoError);
+					if(linea != null) {
+						operaciones.escribirNuevoUsuario(linea);
+						contador = 0;
+					}
+				}else if(contador <= 2) {
+					operaciones.agregarUsuario(contador, textosCrear, titulosCrear, textoError);
+					contador += 1;
+				}
+				
+			}
+		});
 		panelCrear.add(botonSiguienteCrear);
+		
+		textoError = new JLabel("");
+		textoError.setBounds(90, 147, 210, 21);
+		panelCrear.add(textoError);
+		
+		botonCerrarCrear = new JButton("Cerrar");
+		botonCerrarCrear.setBounds(296, 221, 89, 23);
+		botonCerrarCrear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panelCrear.setVisible(false);
+				botonCrear.setVisible(true);
+				botonBorrar.setVisible(true);
+				contador = 0;
+			}
+		});
+		panelCrear.add(botonCerrarCrear);
 		
 		panelBorrar = new JPanel();
 		panelBorrar.setBackground(new Color(192, 192, 192));
@@ -178,6 +216,8 @@ public class pantallaAdminInicio extends JPanel{
 		botonCrear.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				botonCrear.setVisible(false);
+				botonBorrar.setVisible(false);
 				operaciones.mostrarPanelCrear(panelCrear);
 			}
 		});
@@ -194,6 +234,18 @@ public class pantallaAdminInicio extends JPanel{
 		});
 		panelGestionarUsuario.add(botonBorrar);
 		
+		botonVolver = new JButton("Volver");
+		botonVolver.setBounds(296, 221, 89, 23);
+		botonVolver.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        panelGestionarUsuario.setVisible(false);
+		        botonGestionarUsuarios.setVisible(true);
+		        botonVerNoticias.setVisible(true);
+		    }
+		});
+		panelGestionarUsuario.add(botonVolver);
+		
 		textotemp = new JLabel();
 		textotemp.setBounds(42, 38, 89, 33);
 		panelCuerpo.add(textotemp);
@@ -204,6 +256,8 @@ public class pantallaAdminInicio extends JPanel{
 		botonGestionarUsuarios.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				botonGestionarUsuarios.setVisible(false);
+		        botonVerNoticias.setVisible(false);
 				operaciones.mostrarPanelGestion(panelGestionarUsuario);
 			}
 		});
@@ -213,7 +267,7 @@ public class pantallaAdminInicio extends JPanel{
 		botonVerNoticias.setFont(new Font("Tahoma", Font.BOLD, 16));
 		botonVerNoticias.setBounds(469, 171, 195, 113);
 		panelCuerpo.add(botonVerNoticias);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{panelOpciones, botonAcercaDe, botonCerrarSesion, panelGestionarUsuario, tituloPregunta, botonCrear, botonBorrar, panelCrear, panelBorrar, titulosCrear, textosCrear, botonSiguienteCrear, titulosBorrar, textosBorrar, botonSiguienteBorrar}));
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{panelOpciones, botonAcercaDe, botonCerrarSesion, panelGestionarUsuario, panelCrear, titulosCrear, textosCrear, botonSiguienteCrear, textoError, botonVolver, botonCerrarCrear}));
 		
 		
 	}
