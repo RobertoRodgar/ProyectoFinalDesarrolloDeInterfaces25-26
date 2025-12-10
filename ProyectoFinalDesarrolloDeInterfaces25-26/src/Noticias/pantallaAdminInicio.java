@@ -47,7 +47,9 @@ public class pantallaAdminInicio extends JPanel{
 	private JLabel textotemp;
 	private int contador = 0;
 	private JButton botonCerrarCrear;
-	public pantallaAdminInicio(Marco frame) {
+	private JButton botonCerrarBorrar;
+	private JLabel textoErrorBorrar;
+	public pantallaAdminInicio(Marco frame, ArrayList<Usuario> listaUsuarios) {
 		this.framePrincipal = frame;
 		setBounds(100,100,800,600);
 		setLayout(null);
@@ -153,13 +155,13 @@ public class pantallaAdminInicio extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(contador >= 3) {
 					String linea;
-					linea = operaciones.agregarUsuario(contador, textosCrear, titulosCrear, textoError);
+					linea = operaciones.agregarUsuario(contador, textosCrear, titulosCrear, textoError, listaUsuarios);
 					if(linea != null) {
 						operaciones.escribirNuevoUsuario(linea);
 						contador = 0;
 					}
 				}else if(contador <= 2) {
-					operaciones.agregarUsuario(contador, textosCrear, titulosCrear, textoError);
+					operaciones.agregarUsuario(contador, textosCrear, titulosCrear, textoError, listaUsuarios);
 					contador += 1;
 				}
 				
@@ -168,7 +170,7 @@ public class pantallaAdminInicio extends JPanel{
 		panelCrear.add(botonSiguienteCrear);
 		
 		textoError = new JLabel("");
-		textoError.setBounds(90, 147, 210, 21);
+		textoError.setBounds(52, 147, 299, 21);
 		panelCrear.add(textoError);
 		
 		botonCerrarCrear = new JButton("Cerrar");
@@ -191,8 +193,9 @@ public class pantallaAdminInicio extends JPanel{
 		panelBorrar.setVisible(false);
 		panelGestionarUsuario.add(panelBorrar);
 		
-		titulosBorrar = new JLabel("New label");
-		titulosBorrar.setBounds(90, 26, 210, 35);
+		titulosBorrar = new JLabel("Introduce el usuario de la persona que quieres borrar:");
+		titulosBorrar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		titulosBorrar.setBounds(32, 26, 321, 35);
 		panelBorrar.add(titulosBorrar);
 		
 		textosBorrar = new JTextField();
@@ -200,9 +203,32 @@ public class pantallaAdminInicio extends JPanel{
 		panelBorrar.add(textosBorrar);
 		textosBorrar.setColumns(10);
 		
-		botonSiguienteBorrar = new JButton("New button");
+		botonSiguienteBorrar = new JButton("Borrar");
 		botonSiguienteBorrar.setBounds(150, 171, 89, 23);
+		botonSiguienteBorrar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				operaciones.borrarUsuario(textoErrorBorrar, textosBorrar, listaUsuarios, usuario);
+			}
+		});
 		panelBorrar.add(botonSiguienteBorrar);
+		
+		botonCerrarBorrar = new JButton("Cerrar");
+		botonCerrarBorrar.setBounds(296, 221, 89, 23);
+		botonCerrarBorrar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panelBorrar.setVisible(false);
+				botonCrear.setVisible(true);
+				botonBorrar.setVisible(true);
+			}
+		});
+		panelBorrar.add(botonCerrarBorrar);
+		
+		textoErrorBorrar = new JLabel("");
+		textoErrorBorrar.setHorizontalAlignment(SwingConstants.CENTER);
+		textoErrorBorrar.setBounds(10, 147, 365, 21);
+		panelBorrar.add(textoErrorBorrar);
 		
 		tituloPregunta = new JLabel("¿Que quieres hacer?");
 		tituloPregunta.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -229,6 +255,8 @@ public class pantallaAdminInicio extends JPanel{
 		botonBorrar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				botonCrear.setVisible(false);
+				botonBorrar.setVisible(false);
 				operaciones.mostrarPanelBorrar(panelBorrar);
 			}
 		});
@@ -266,8 +294,14 @@ public class pantallaAdminInicio extends JPanel{
 		botonVerNoticias = new JButton("Ver noticias");
 		botonVerNoticias.setFont(new Font("Tahoma", Font.BOLD, 16));
 		botonVerNoticias.setBounds(469, 171, 195, 113);
+		botonVerNoticias.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.mostrarPantallaNoticias(usuario);
+			}
+		});
 		panelCuerpo.add(botonVerNoticias);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{panelOpciones, botonAcercaDe, botonCerrarSesion, panelGestionarUsuario, panelCrear, titulosCrear, textosCrear, botonSiguienteCrear, textoError, botonVolver, botonCerrarCrear}));
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{panelOpciones, botonAcercaDe, botonCerrarSesion, panelGestionarUsuario, panelCrear, titulosCrear, textosCrear, botonSiguienteCrear, textoError, botonVolver, botonCerrarCrear, botonCerrarBorrar, textoErrorBorrar}));
 		
 		
 	}

@@ -18,6 +18,8 @@ public class Operaciones {
 	private ImageIcon mostrar = new ImageIcon("Extras/Imagenes/OjoAbierto.png");
 	private ImageIcon ocultar = new ImageIcon("Extras/Imagenes/OjoCerrado.png");
 	private String correo, contrasena, nombre, esAdmin, inicio;
+	private boolean esAdminAnadir;
+	private int inicioAnadir;
 	private File archivoUsuarios = new File("Extras/TXTs/usuarios2.txt");
 	
 	public void ocultarContraseña(JPasswordField campoContraseña, char caracter, JButton botonOcultarContrasena) {
@@ -77,7 +79,7 @@ public class Operaciones {
 		}
 	}
 	
-	public String agregarUsuario(int contador, JTextField campoTexto, JLabel titulos, JLabel textoError) {
+	public String agregarUsuario(int contador, JTextField campoTexto, JLabel titulos, JLabel textoError, ArrayList<Usuario> listaUsuarios) {
 		switch (contador) {
 		case 0:
 			correo = campoTexto.getText();
@@ -100,13 +102,20 @@ public class Operaciones {
 		    if(texto.equals("true") || texto.equals("false")) {
 		        textoError.setText("");
 		        if(texto.equals("true")) {
+		        	esAdminAnadir = true;
+		        	inicioAnadir = 1;
 		            inicio = "1";
 		        } else {
+		        	esAdminAnadir = false;
+		        	inicioAnadir = 0;
 		            inicio = "0";
 		        }
 		        esAdmin = texto;
 		        campoTexto.setText("");
 		        titulos.setText("Introduce el correo:");
+		        
+		        Usuario nuevoUsuario = new Usuario(correo, contrasena, nombre, esAdminAnadir, inicioAnadir);
+		        listaUsuarios.add(nuevoUsuario);
 		        return correo + ";" + contrasena + ";" + nombre + ";" + esAdmin + ";" + inicio;
 		        
 		    } else {
@@ -139,5 +148,50 @@ public class Operaciones {
         } catch (Exception e) {
             System.out.println("Ha ocurrido un error inesperado.");
         }
+	}
+	
+	public void borrarUsuario(JLabel textoError, JTextField texto, ArrayList<Usuario> listaUsuarios, Usuario usuario) {
+		if(usuario.getNombre().equals(texto.getText())) {
+			textoError.setText("No puedes borrarte a ti mismo.");
+		}else {
+			Usuario usuarioBorrar = null;
+			for(Usuario temp : listaUsuarios) {
+				if(temp.getNombre().equals(texto.getText())) {
+					usuarioBorrar = temp;
+				}
+			}
+			if(usuarioBorrar == null) {
+				textoError.setText("No se ha encontrado a ningun usuario con tal nombre.");
+			}else {
+				textoError.setText("Se ha borrado al usuario con éxito.");
+				listaUsuarios.remove(usuarioBorrar);
+				borrarUsuarioTxt(usuarioBorrar);
+			}
+		}
+	}
+
+	public void borrarUsuarioTxt(Usuario usuarioBorrar) {
+		ArrayList<String> lineas = new ArrayList<String>();
+		
+		try (BufferedReader br = new BufferedReader(new FileReader(archivoUsuarios))) {
+            String lineaTemp;
+            String[] parametros;
+            while ((lineaTemp = br.readLine()) != null) {
+            	parametros = lineaTemp.split(";");
+            	if(!parametros[0].equals(usuarioBorrar.getEmail())) {
+            		lineas.add(lineaTemp);
+            	}  
+            }
+        } catch (Exception e) {
+        	System.out.println("Ha ocurrido un error inesperado.");
+        }
+		try (FileWriter fw = new FileWriter(archivoUsuarios)) {
+            for (String lineaEscribir : lineas) {
+                fw.write(lineaEscribir + "\n"); 
+            }
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error inesperado.");
+        }
+		
 	}
 }
