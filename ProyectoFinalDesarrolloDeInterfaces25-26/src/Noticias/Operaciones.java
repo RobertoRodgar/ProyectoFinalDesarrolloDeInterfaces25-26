@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -11,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
@@ -21,6 +23,8 @@ public class Operaciones {
 	private boolean esAdminAnadir;
 	private int inicioAnadir;
 	private File archivoUsuarios = new File("Extras/TXTs/usuarios2.txt");
+	private File archivoWebs = new File("Extras/TXTs/configWebs.txt");
+	private SacarTitular sacarTitular = new SacarTitular();
 	
 	public void ocultarContraseña(JPasswordField campoContraseña, char caracter, JButton botonOcultarContrasena) {
 		char campoActual = campoContraseña.getEchoChar();
@@ -192,6 +196,161 @@ public class Operaciones {
         } catch (Exception e) {
             System.out.println("Ha ocurrido un error inesperado.");
         }
+	}
+	
+	public void noticiasEconomia1(JTextArea titular) throws IOException {
+		String web = extraerWeb("Economia", 1);
+		String aBuscar = extraerABuscar("Economia", 2);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	public void noticiasEconomia2(JTextArea titular) throws IOException {
+		String web = extraerWeb("Economia", 3);
+		String aBuscar = extraerABuscar("Economia", 4);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	public void noticiasEconomia3(JTextArea titular) throws IOException {
+		String web = extraerWeb("Economia", 5);
+		String aBuscar = extraerABuscar("Economia", 6);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	
+
+	public void noticiasDeportes1(JTextArea titular) throws IOException {
+		String web = extraerWeb("Deportes", 1);
+		String aBuscar = extraerABuscar("Deportes", 2);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	public void noticiasDeportes2(JTextArea titular) throws IOException {
+		String web = extraerWeb("Deportes", 3);
+		String aBuscar = extraerABuscar("Deportes", 4);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	public void noticiasDeportes3(JTextArea titular) throws IOException {
+		String web = extraerWeb("Deportes", 5);
+		String aBuscar = extraerABuscar("Deportes", 6);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	
+
+	public void noticiasNacional1(JTextArea titular) throws IOException {
+		String web = extraerWeb("Nacional", 1);
+		String aBuscar = extraerABuscar("Nacional", 2);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	public void noticiasNacional2(JTextArea titular) throws IOException {
+		String web = extraerWeb("Nacional", 3);
+		String aBuscar = extraerABuscar("Nacional", 4);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	public void noticiasNacional3(JTextArea titular) throws IOException {
+		String web = extraerWeb("Nacional", 5);
+		String aBuscar = extraerABuscar("Nacional", 6);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+
+	
+	public void noticiasInternacional1(JTextArea titular) throws IOException {
+		String web = extraerWeb("Internacional", 1);
+		String aBuscar = extraerABuscar("Internacional", 2);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	public void noticiasInternacional2(JTextArea titular) throws IOException {
+		String web = extraerWeb("Internacional", 3);
+		String aBuscar = extraerABuscar("Internacional", 4);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	public void noticiasInternacional3(JTextArea titular) throws IOException {
+		String web = extraerWeb("Internacional", 5);
+		String aBuscar = extraerABuscar("Internacional", 6);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+
+	
+	public void noticiasVideojuegos1(JTextArea titular) throws IOException {
+		String web = extraerWeb("Videojuegos", 1);
+		String aBuscar = extraerABuscar("Videojuegos", 2);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	public void noticiasVideojuegos2(JTextArea titular) throws IOException {
+		String web = extraerWeb("Videojuegos", 3);
+		String aBuscar = extraerABuscar("Videojuegos", 4);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	public void noticiasVideojuegos3(JTextArea titular) throws IOException {
+		String web = extraerWeb("Videojuegos", 5);
+		String aBuscar = extraerABuscar("Videojuegos", 6);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	
+	
+	public void noticiasReligiosas1(JTextArea titular) throws IOException {
+		String web = extraerWeb("Religiosas", 1);
+		String aBuscar = extraerABuscar("Religiosas", 2);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	public void noticiasReligiosas2(JTextArea titular) throws IOException {
+		String web = extraerWeb("Religiosas", 3);
+		String aBuscar = extraerABuscar("Religiosas", 4);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	public void noticiasReligiosas3(JTextArea titular) throws IOException {
+		String web = extraerWeb("Religiosas", 5);
+		String aBuscar = extraerABuscar("Religiosas", 6);
+		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+	}
+	
+	
+	
+	public String extraerWeb(String tipo, int numTitular) {
 		
+		try(BufferedReader br = new BufferedReader(new FileReader(archivoWebs))) {
+			String linea;
+			String web = null;
+			while((linea = br.readLine()) != null) {
+				String[] parametros = linea.split(";");
+				if(parametros[0].equals(tipo)) {
+					web = parametros[numTitular];
+				}
+			}
+			
+			return web;
+		} catch (IOException e) {
+			return null;
+		}
+	}
+	
+	
+	public String extraerABuscar(String tipo, int numBusqueda) {
+		try(BufferedReader br = new BufferedReader(new FileReader(archivoWebs))) {
+			String linea;
+			String web = null;
+			while((linea = br.readLine()) != null) {
+				String[] parametros = linea.split(";");
+				if(parametros[0].equals(tipo)) {
+					web = parametros[numBusqueda];
+				}
+			}
+			
+			return web;
+		} catch (IOException e) {
+			return null;
+		}
 	}
 }

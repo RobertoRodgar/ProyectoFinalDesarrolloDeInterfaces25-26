@@ -23,7 +23,7 @@ public class pantallaAcercaDe extends JPanel {
 		textoVersion = new JLabel();
 		textoVersion.setFont(new Font("Tahoma", Font.BOLD, 20));
 		textoVersion.setHorizontalAlignment(SwingConstants.CENTER);
-		textoVersion.setText("Version actual de la aplicación: " + getClass().getPackage().getImplementationVersion());
+		textoVersion.setText("Version actual de la aplicación: v1.0");
 		textoVersion.setBounds(210, 130, 402, 107);
 		add(textoVersion);
 		
