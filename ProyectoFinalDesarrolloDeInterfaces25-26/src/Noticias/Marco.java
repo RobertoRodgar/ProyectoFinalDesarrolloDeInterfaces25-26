@@ -18,6 +18,8 @@ public class Marco extends JFrame{
 	pantallaAdminInicio pantallaAdminInicio;
 	pantallaAcercaDe pantallaAcercaDe;
 	pantallaNoticias pantallaNoticias;
+	pantallaGuardarPreferencias pantallaGuardarPreferencias;
+	pantallaUsuario pantallaUsuario;
 	
 	public Marco(ArrayList<Usuario> listaUsuarios) {
 		ImageIcon np = new ImageIcon("Extras/Imagenes/np.png");
@@ -35,11 +37,15 @@ public class Marco extends JFrame{
 		pantallaAdminInicio = new pantallaAdminInicio(this, listaUsuarios);
 		pantallaAcercaDe = new pantallaAcercaDe(this);
 		pantallaNoticias = new pantallaNoticias(this, listaUsuarios);
+		pantallaGuardarPreferencias = new pantallaGuardarPreferencias(this);
+		pantallaUsuario = new pantallaUsuario(this);
 		
 		contentPane.add(iniciarSesion, "IniciarSesion");
         contentPane.add(pantallaAdminInicio, "PantallaInicioAdmin");
         contentPane.add(pantallaAcercaDe, "PantallaAcercaDe");
         contentPane.add(pantallaNoticias, "PantallaNoticias");
+        contentPane.add(pantallaGuardarPreferencias, "PantallaGuardarPreferencias");
+        contentPane.add(pantallaUsuario, "PantallaUsuario");
 		
         cardLayout.show(contentPane, "IniciarSesion");
 
@@ -68,5 +74,19 @@ public class Marco extends JFrame{
 	public void mostrarPantallaNoticias(Usuario usuario) {
 		pantallaNoticias.establecerUsuario(usuario);
 		cardLayout.show(contentPane, "PantallaNoticias");
+	}
+	
+	public void mostrarPantallaGuardarPreferencias(Usuario usuario) {
+		pantallaGuardarPreferencias.establecerUsuario(usuario);
+		cardLayout.show(contentPane, "PantallaGuardarPreferencias");
+	}
+	
+	public void mostrarPantallaUsuario(Usuario usuario) {
+		pantallaUsuario.establecerUsuario(usuario);
+		cardLayout.show(contentPane, "PantallaUsuario");
+	}
+	
+	public void mostrarPantallaUsuarioVolver() {
+		cardLayout.show(contentPane, "PantallaUsuario");
 	}
 }

@@ -90,6 +90,15 @@ public class iniciarSesion extends JPanel{
 				}else if(usuarioIniciado.getEsAdmin()) {
 					errorInicio.setText("");
 					frame.mostrarPantallaAdmin(usuarioIniciado);
+				}else if(!usuarioIniciado.getEsAdmin()){
+					errorInicio.setText("");
+					if(usuarioIniciado.getInicio() == 0) {
+						frame.mostrarPantallaGuardarPreferencias(usuarioIniciado);
+					}else {
+						frame.mostrarPantallaUsuario(usuarioIniciado);
+					}
+				}else {
+					System.out.println("Ha ocurrido un error inesperado...");
 				}
 			}
 		});

@@ -79,7 +79,6 @@ public class pantallaAdminInicio extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.mostrarPantallaInicio();
-				
 			}
 		});
 		panelOpciones.add(botonCerrarSesion);
@@ -162,7 +161,9 @@ public class pantallaAdminInicio extends JPanel{
 					}
 				}else if(contador <= 2) {
 					operaciones.agregarUsuario(contador, textosCrear, titulosCrear, textoError, listaUsuarios);
-					contador += 1;
+					if(!textoError.getText().equals("ERROR. El nombre de usuario no puede tener ;")) {
+						contador += 1;
+					}
 				}
 				
 			}

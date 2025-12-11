@@ -27,6 +27,7 @@ public class pantallaNoticias extends JPanel{
 	private JButton botonVolver;
 	Operaciones operaciones = new Operaciones();
 	private JButton botonVolverAdmin;
+	private JButton botonVolverUsuario;
 	public pantallaNoticias(Marco frame, ArrayList<Usuario> listaUsuarios) {
 		setBounds(100,100,800,600);
 		setLayout(null);
@@ -292,20 +293,26 @@ public class pantallaNoticias extends JPanel{
 				titular1.setVisible(false);
 				titular2.setVisible(false);
 				titular3.setVisible(false);
-				botonEconomia.setVisible(true);
+				//
+				//AL VOLVER SE MUESTRAN TODAS LAS NOTICIAS, ENCONTRAR LA LÓGICAS PRA COMPROBAR EL USER
+				//
+				/*botonEconomia.setVisible(true);
 				botonDeportes.setVisible(true);
 				botonNacional.setVisible(true);
 				botonInternacional.setVisible(true);
 				botonVideojuegos.setVisible(true);
-				botonReligiosas.setVisible(true);
+				botonReligiosas.setVisible(true);*/
 				botonVolver.setVisible(false);
-				botonVolverAdmin.setVisible(true);
+				mostrarBotones();
+				comprobarAdmin();
+				//botonVolverAdmin.setVisible(true);
 			}
 		});
         add(botonVolver);
         
         botonVolverAdmin = new JButton("Volver");
         botonVolverAdmin.setBounds(686, 489, 89, 23);
+        botonVolverAdmin.setVisible(false);
         botonVolverAdmin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -314,12 +321,37 @@ public class pantallaNoticias extends JPanel{
 		});
         add(botonVolverAdmin);
         
+        botonVolverUsuario = new JButton("Volver");
+        botonVolverUsuario.setBounds(686, 489, 89, 23);
+        botonVolverUsuario.setVisible(false);
+        botonVolverUsuario.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.mostrarPantallaUsuarioVolver();
+			}
+		});
+        add(botonVolverUsuario);
+        
+        
         
 	}
 	
 	public void establecerUsuario(Usuario usuario) {
 		this.usuario = usuario;
 		
+		botonEconomia.setVisible(false);
+	    botonDeportes.setVisible(false);
+	    botonNacional.setVisible(false);
+	    botonInternacional.setVisible(false);
+	    botonVideojuegos.setVisible(false);
+	    botonReligiosas.setVisible(false);
+		
+		comprobarAdmin();
+		
+		mostrarBotones();
+	}
+	
+	public void mostrarBotones() {
 		if(usuario.getEsAdmin() == true) {
 			botonEconomia.setVisible(true);
 			botonDeportes.setVisible(true);
@@ -328,7 +360,44 @@ public class pantallaNoticias extends JPanel{
 			botonVideojuegos.setVisible(true);
 			botonReligiosas.setVisible(true);
 		}else {
-			
+			String[] preferencias;
+			preferencias = operaciones.consultarPreferencias(usuario.getNombre());
+			if(preferencias != null) {
+				for (int i = 1; i < preferencias.length; i++) {
+					switch (preferencias[i]) {
+					case "Economia":
+						botonEconomia.setVisible(true);
+						break;
+					case "Deportes":
+						botonDeportes.setVisible(true);
+						break;
+					case "Nacional":
+						botonNacional.setVisible(true);
+						break;
+					case "Internacional":
+						botonInternacional.setVisible(true);
+						break;
+					case "Videojuegos":
+						botonVideojuegos.setVisible(true);
+						break;
+					case "Religiosas":
+						botonReligiosas.setVisible(true);
+						break;
+					default:
+
+					}
+				}
+			}
+		}
+	}
+	
+	public void comprobarAdmin() {
+		if(usuario.getEsAdmin()) {
+			botonVolverAdmin.setVisible(true);
+			botonVolverUsuario.setVisible(false);
+		}else {
+			botonVolverUsuario.setVisible(true);
+			botonVolverAdmin.setVisible(false);
 		}
 	}
 }

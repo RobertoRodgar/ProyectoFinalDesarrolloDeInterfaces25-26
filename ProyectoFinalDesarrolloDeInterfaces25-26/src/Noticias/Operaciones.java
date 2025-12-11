@@ -23,7 +23,7 @@ public class Operaciones {
 	private boolean esAdminAnadir;
 	private int inicioAnadir;
 	private File archivoUsuarios = new File("Extras/TXTs/usuarios2.txt");
-	private File archivoWebs = new File("Extras/TXTs/configWebs.txt");
+	private File configs = new File("Extras/TXTs/configuraciones.txt");
 	private SacarTitular sacarTitular = new SacarTitular();
 	
 	public void ocultarContraseña(JPasswordField campoContraseña, char caracter, JButton botonOcultarContrasena) {
@@ -97,9 +97,14 @@ public class Operaciones {
 			break;
 		case 2:
 			nombre = campoTexto.getText();
-			campoTexto.setText("");
-			titulos.setText("Introduce si es admin o no (true / false):");
-			break;
+			if(nombre.contains(";")) {
+				textoError.setText("ERROR. El nombre de usuario no puede tener ;");
+			}else {
+				textoError.setText("");
+				campoTexto.setText("");
+				titulos.setText("Introduce si es admin o no (true / false):");
+				break;
+			}
 		case 3:
 			String texto = campoTexto.getText();
 		    
@@ -320,7 +325,7 @@ public class Operaciones {
 	
 	public String extraerWeb(String tipo, int numTitular) {
 		
-		try(BufferedReader br = new BufferedReader(new FileReader(archivoWebs))) {
+		try(BufferedReader br = new BufferedReader(new FileReader(configs))) {
 			String linea;
 			String web = null;
 			while((linea = br.readLine()) != null) {
@@ -338,7 +343,7 @@ public class Operaciones {
 	
 	
 	public String extraerABuscar(String tipo, int numBusqueda) {
-		try(BufferedReader br = new BufferedReader(new FileReader(archivoWebs))) {
+		try(BufferedReader br = new BufferedReader(new FileReader(configs))) {
 			String linea;
 			String web = null;
 			while((linea = br.readLine()) != null) {
@@ -352,5 +357,71 @@ public class Operaciones {
 		} catch (IOException e) {
 			return null;
 		}
+	}
+	
+	public void guardarPreferencias(String preferenciaNueva) {
+		ArrayList<String> lineas = new ArrayList<String>();
+		
+		try (BufferedReader br = new BufferedReader(new FileReader(configs))) {
+            String lineaTemp;
+            while ((lineaTemp = br.readLine()) != null) {
+                lineas.add(lineaTemp);
+            }
+            lineas.add(preferenciaNueva);
+        } catch (Exception e) {
+        	System.out.println("Ha ocurrido un error inesperado.");
+        }
+		try (FileWriter fw = new FileWriter(configs)) {
+            
+            for (String lineaEscribir : lineas) {
+                fw.write(lineaEscribir + "\n"); 
+            }
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error inesperado.");
+        }
+		
+	}
+	
+	public String[] consultarPreferencias(String nombreUsuario) {
+		String[] preferencias = null;
+		try (BufferedReader br = new BufferedReader(new FileReader(configs))) {
+            String lineaTemp;
+            while ((lineaTemp = br.readLine()) != null) {
+                preferencias = lineaTemp.split(";");
+                if(preferencias[0].equals(nombreUsuario)) {
+                	break;
+                }
+            }
+            return preferencias;
+        } catch (Exception e) {
+        	System.out.println("Ha ocurrido un error inesperado.");
+        	return null;
+        }
+	}
+	
+	public void guardarUsuario(String nombre) {
+		ArrayList<String> lineas = new ArrayList<String>();
+		
+		try (BufferedReader br = new BufferedReader(new FileReader(archivoUsuarios))) {
+            String lineaTemp;
+            while ((lineaTemp = br.readLine()) != null) {
+            	String[] parametros = lineaTemp.split(";");
+				if(parametros[2].equals(nombre)) {
+					parametros[4] = "1";
+					lineaTemp = String.join(";", parametros);
+				}
+				lineas.add(lineaTemp);
+            }
+        } catch (Exception e) {
+        	System.out.println("Ha ocurrido un error inesperado.");
+        }
+		try (FileWriter fw = new FileWriter(archivoUsuarios)) {
+            
+            for (String lineaEscribir : lineas) {
+                fw.write(lineaEscribir + "\n"); 
+            }
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error inesperado.");
+        }
 	}
 }
