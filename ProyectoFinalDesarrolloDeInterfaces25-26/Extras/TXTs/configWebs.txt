@@ -1,6 +1,0 @@
-Economia;https://elpais.com/economia/;h2;https://www.eleconomista.es;h2;https://www.elmundo.es/economia.html;h2
-Deportes;https://www.marca.com;h2;https://www.rtve.es/deportes/;h3;https://www.mundodeportivo.com;h2
-Nacional;https://www.abc.es;h2;https://www.larazon.es;h2;https://www.europapress.es/nacional/;h2
-Internacional;https://cnnespanol.cnn.com;h2;https://www.bbc.com/mundo/topics/c2lej05epw5t;h2;https://www.20minutos.es/internacional/;h2.c-article__title a
-Videojuegos;https://vandal.elespanol.com/noticias/videojuegos;h2;https://www.publico.es/tag/videojuegos;h2;https://www.xataka.com/categoria/videojuegos;h2
-Religiosas;https://www.vidanuevadigital.com;h2;https://www.vaticannews.va/es/iglesia.html;.teaser__title;https://www.religionenlibertad.com;h2.c-article__title a

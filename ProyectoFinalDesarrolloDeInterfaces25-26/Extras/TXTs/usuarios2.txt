@@ -1,5 +1,5 @@
 roberto.rodriguez.dosa@gmail.com;a;Roberto;true;1
-miguel@gmail.com;a2;Miguel;false;0
+miguel@gmail.com;a2;Miguel;false;1
 sebas@gmail.com;a3;Sebas;false;0
 jeremy@gmail.com;a4;Jeremy;false;0
 r@gmail.com;c;si;true;1
