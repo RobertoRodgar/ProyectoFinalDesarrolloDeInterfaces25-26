@@ -17,7 +17,9 @@ public class Main {
 					ventanaCarga.setVisible(true);
 
 				} catch (Exception e) {
-					e.printStackTrace();
+					javax.swing.JOptionPane.showMessageDialog(null,
+							"Error fatal al iniciar la aplicación: " + e.getMessage(), "Error",
+							javax.swing.JOptionPane.ERROR_MESSAGE);
 				}
 
 			}

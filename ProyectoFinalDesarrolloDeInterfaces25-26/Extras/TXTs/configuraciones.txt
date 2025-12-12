@@ -7,4 +7,3 @@ Religiosas;https://www.vidanuevadigital.com;h2;https://www.vaticannews.va/es/igl
 fromEmail;roberto.rodriguez.dosa@gmail.com
 password;nmjr dsvk trib uddx
 Hora;10
-Miguel;Deportes;Videojuegos
