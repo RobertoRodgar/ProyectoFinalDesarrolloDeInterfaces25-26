@@ -3,10 +3,12 @@ package Noticias;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
@@ -25,7 +27,7 @@ public class pantallaAdminInicio extends JPanel{
 	private ImageIcon fotoUsuario = new ImageIcon("Extras/Imagenes/fotoUsuario.png");
 	private JPanel panelOpciones;
 	private JPanel panelCuerpo;
-	private JButton botonAcercaDe;
+	private JButton botonSalir;
 	private JButton botonCerrarSesion;
 	private JButton botonGestionarUsuarios;
 	private JButton botonVerNoticias;
@@ -49,6 +51,8 @@ public class pantallaAdminInicio extends JPanel{
 	private JButton botonCerrarCrear;
 	private JButton botonCerrarBorrar;
 	private JLabel textoErrorBorrar;
+	private JButton botonProbarMail;
+	private JButton botonVerDatos;
 	public pantallaAdminInicio(Marco frame, ArrayList<Usuario> listaUsuarios) {
 		this.framePrincipal = frame;
 		setBounds(100,100,800,600);
@@ -61,18 +65,29 @@ public class pantallaAdminInicio extends JPanel{
 		add(panelOpciones);
 		panelOpciones.setLayout(null);
 		
-		botonAcercaDe = new JButton("Acerca de");
-		botonAcercaDe.setForeground(new Color(74, 74, 74));
-		botonAcercaDe.setFont(new Font("Tahoma", Font.BOLD, 11));
-		botonAcercaDe.setBounds(18, 36, 109, 23);
-		botonAcercaDe.setContentAreaFilled(false);
-		botonAcercaDe.setBorder(null);
-		panelOpciones.add(botonAcercaDe);
+		botonSalir = new JButton("Salir");
+		botonSalir.setForeground(new Color(74, 74, 74));
+		botonSalir.setFont(new Font("Tahoma", Font.BOLD, 11));
+		botonSalir.setBounds(18, 93, 109, 23);
+		botonSalir.setContentAreaFilled(false);
+		botonSalir.setBorder(null);
+		botonSalir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(null, "Seguro que quiere salir?", "Confirmación",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					System.exit(0);
+
+				}
+				
+			}
+		});
+		panelOpciones.add(botonSalir);
 		
 		botonCerrarSesion = new JButton("Cerrar sesión");
 		botonCerrarSesion.setForeground(new Color(74, 74, 74));
 		botonCerrarSesion.setFont(new Font("Tahoma", Font.BOLD, 11));
-		botonCerrarSesion.setBounds(18, 93, 109, 23);
+		botonCerrarSesion.setBounds(18, 36, 109, 23);
 		botonCerrarSesion.setContentAreaFilled(false);
 		botonCerrarSesion.setBorder(null);
 		botonCerrarSesion.addActionListener(new ActionListener() {
@@ -94,13 +109,6 @@ public class pantallaAdminInicio extends JPanel{
 		cabeceraAdmin.setFont(new Font("Tahoma", Font.BOLD, 16));
 		cabeceraAdmin.setHorizontalAlignment(SwingConstants.CENTER);
 		cabeceraAdmin.setBounds(10, 22, 211, 36);
-		botonAcercaDe.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.mostrarPantallaAcercaDe();
-				
-			}
-		});
 		panelCabecera.add(cabeceraAdmin);
 		
 		botonOpciones = new JButton("");
@@ -271,6 +279,8 @@ public class pantallaAdminInicio extends JPanel{
 		        panelGestionarUsuario.setVisible(false);
 		        botonGestionarUsuarios.setVisible(true);
 		        botonVerNoticias.setVisible(true);
+		        botonVerDatos.setVisible(true);
+		        botonProbarMail.setVisible(true);
 		    }
 		});
 		panelGestionarUsuario.add(botonVolver);
@@ -281,12 +291,14 @@ public class pantallaAdminInicio extends JPanel{
 		
 		botonGestionarUsuarios = new JButton("Gestionar usuarios");
 		botonGestionarUsuarios.setFont(new Font("Tahoma", Font.BOLD, 16));
-		botonGestionarUsuarios.setBounds(128, 171, 195, 113);
+		botonGestionarUsuarios.setBounds(128, 110, 195, 113);
 		botonGestionarUsuarios.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				botonGestionarUsuarios.setVisible(false);
 		        botonVerNoticias.setVisible(false);
+		        botonProbarMail.setVisible(false);
+		        botonVerDatos.setVisible(false);
 				operaciones.mostrarPanelGestion(panelGestionarUsuario);
 			}
 		});
@@ -294,7 +306,7 @@ public class pantallaAdminInicio extends JPanel{
 		
 		botonVerNoticias = new JButton("Ver noticias");
 		botonVerNoticias.setFont(new Font("Tahoma", Font.BOLD, 16));
-		botonVerNoticias.setBounds(469, 171, 195, 113);
+		botonVerNoticias.setBounds(469, 110, 195, 113);
 		botonVerNoticias.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -302,7 +314,39 @@ public class pantallaAdminInicio extends JPanel{
 			}
 		});
 		panelCuerpo.add(botonVerNoticias);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{panelOpciones, botonAcercaDe, botonCerrarSesion, panelGestionarUsuario, panelCrear, titulosCrear, textosCrear, botonSiguienteCrear, textoError, botonVolver, botonCerrarCrear, botonCerrarBorrar, textoErrorBorrar}));
+		
+		botonProbarMail = new JButton("Enviar mail prueba");
+		botonProbarMail.setFont(new Font("Tahoma", Font.BOLD, 16));
+		botonProbarMail.setBounds(128, 240, 195, 113);
+		botonProbarMail.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String cuerpo = "";
+				try {
+					cuerpo = SimpleEmail.cuerpoMensaje(usuario);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				String toEmail = usuario.getEmail();
+				SimpleEmail.enviarNoticias(toEmail, cuerpo);
+				
+			}
+		});
+		panelCuerpo.add(botonProbarMail);
+		
+		
+		botonVerDatos = new JButton("Ver datos email");
+		botonVerDatos.setFont(new Font("Tahoma", Font.BOLD, 16));
+		botonVerDatos.setBounds(469, 240, 195, 113);
+		botonVerDatos.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, operaciones.obtenerHora(), "Hora envio" ,1);
+				JOptionPane.showMessageDialog(frame, operaciones.obtenerFrom(), "Correo de envío", 1);
+			}
+		});
+		panelCuerpo.add(botonVerDatos);
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{panelOpciones, botonSalir, botonCerrarSesion, panelGestionarUsuario, panelCrear, titulosCrear, textosCrear, botonSiguienteCrear, textoError, botonVolver, botonCerrarCrear, botonCerrarBorrar, textoErrorBorrar, botonProbarMail, botonVerDatos}));
 		
 		
 	}

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JWindow;
 import javax.swing.Timer;
@@ -35,17 +36,21 @@ public class PantallaCarga extends JWindow{
 			public void actionPerformed(ActionEvent e) {
 				i+=20;
 				barraProgreso.setValue(i);
-				if(i==100) {
-					tiempo.stop();
-					dispose();	
+				if(i==80) {
 					UsuariosGestionar gestion = new UsuariosGestionar();
 					gestion.iniciarUsuarios(listaUsuarios);
-					if(listaUsuarios == null) {
-						System.out.println("Ha ocurrido un error a la hora de cargar los usuarios.");
-					}else {
-						Marco miVentana = new Marco(listaUsuarios);
-						miVentana.setVisible(true);
+					if(listaUsuarios.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Error crítico: No se han podido cargar los usuarios. La aplicación se cerrará.");
+						tiempo.stop();
+						dispose();
 					}
+				}
+				if(i==100) {
+					tiempo.stop();
+					dispose();
+					Marco miVentana = new Marco(listaUsuarios);
+					miVentana.setVisible(true);
+					
 				}
 			}
 		});

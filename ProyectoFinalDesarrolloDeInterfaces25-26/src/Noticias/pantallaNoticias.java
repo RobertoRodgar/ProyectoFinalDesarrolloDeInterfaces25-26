@@ -3,6 +3,7 @@ package Noticias;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -43,11 +44,11 @@ public class pantallaNoticias extends JPanel {
 				fuente2.setText("El Economista");
 				fuente3.setText("El Mundo");
 				try {
-					operaciones.noticiasEconomia1(titular1);
-					operaciones.noticiasEconomia2(titular2);
-					operaciones.noticiasEconomia3(titular3);
-				} catch (Exception ex) {
-					ex.printStackTrace();
+					titular1.setText(operaciones.noticiasEconomia1());
+    				titular2.setText(operaciones.noticiasEconomia2());
+    				titular3.setText(operaciones.noticiasEconomia3());
+				}catch(Exception ex) {
+					JOptionPane.showMessageDialog(null, "Error al obtener noticias de Economía: " + ex.getMessage());
 				}
 				botonEconomia.setVisible(false);
 				botonDeportes.setVisible(false);
@@ -77,26 +78,26 @@ public class pantallaNoticias extends JPanel {
 				fuente2.setText("RTVE.es");
 				fuente3.setText("Mundo Deportivo");
 				try {
-					operaciones.noticiasDeportes1(titular1);
-					operaciones.noticiasDeportes2(titular2);
-					operaciones.noticiasDeportes3(titular3);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-				botonEconomia.setVisible(false);
-				botonDeportes.setVisible(false);
-				botonNacional.setVisible(false);
-				botonInternacional.setVisible(false);
-				botonVideojuegos.setVisible(false);
-				botonReligiosas.setVisible(false);
-				fuente1.setVisible(true);
-				fuente2.setVisible(true);
-				fuente3.setVisible(true);
-				titular1.setVisible(true);
-				titular2.setVisible(true);
-				titular3.setVisible(true);
-				botonVolver.setVisible(true);
-				botonVolverAdmin.setVisible(false);
+					titular1.setText(operaciones.noticiasDeportes1());
+    				titular2.setText(operaciones.noticiasDeportes2());
+    				titular3.setText(operaciones.noticiasDeportes3());
+					}catch(Exception ex) {
+						JOptionPane.showMessageDialog(null, "Error al obtener noticias de Deportes: " + ex.getMessage());
+					}
+					botonEconomia.setVisible(false);
+					botonDeportes.setVisible(false);
+					botonNacional.setVisible(false);
+					botonInternacional.setVisible(false);
+					botonVideojuegos.setVisible(false);
+					botonReligiosas.setVisible(false);
+					fuente1.setVisible(true);
+					fuente2.setVisible(true);
+					fuente3.setVisible(true);
+					titular1.setVisible(true);
+					titular2.setVisible(true);
+					titular3.setVisible(true);
+					botonVolver.setVisible(true);
+					botonVolverAdmin.setVisible(false);
 			}
 		});
 		add(botonDeportes);
@@ -111,26 +112,26 @@ public class pantallaNoticias extends JPanel {
 				fuente2.setText("La Razón");
 				fuente3.setText("Europa Press");
 				try {
-					operaciones.noticiasNacional1(titular1);
-					operaciones.noticiasNacional2(titular2);
-					operaciones.noticiasNacional3(titular3);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-				botonEconomia.setVisible(false);
-				botonDeportes.setVisible(false);
-				botonNacional.setVisible(false);
-				botonInternacional.setVisible(false);
-				botonVideojuegos.setVisible(false);
-				botonReligiosas.setVisible(false);
-				fuente1.setVisible(true);
-				fuente2.setVisible(true);
-				fuente3.setVisible(true);
-				titular1.setVisible(true);
-				titular2.setVisible(true);
-				titular3.setVisible(true);
-				botonVolver.setVisible(true);
-				botonVolverAdmin.setVisible(false);
+					titular1.setText(operaciones.noticiasNacional1());
+    				titular2.setText(operaciones.noticiasNacional2());
+    				titular3.setText(operaciones.noticiasNacional3());
+					}catch(Exception ex) {
+						JOptionPane.showMessageDialog(null, "Error al obtener noticias de Nacional: " + ex.getMessage());
+					}
+					botonEconomia.setVisible(false);
+					botonDeportes.setVisible(false);
+					botonNacional.setVisible(false);
+					botonInternacional.setVisible(false);
+					botonVideojuegos.setVisible(false);
+					botonReligiosas.setVisible(false);
+					fuente1.setVisible(true);
+					fuente2.setVisible(true);
+					fuente3.setVisible(true);
+					titular1.setVisible(true);
+					titular2.setVisible(true);
+					titular3.setVisible(true);
+					botonVolver.setVisible(true);
+					botonVolverAdmin.setVisible(false);
 			}
 		});
 		add(botonNacional);
@@ -145,26 +146,26 @@ public class pantallaNoticias extends JPanel {
 				fuente2.setText("BBC");
 				fuente3.setText("20Minutos");
 				try {
-					operaciones.noticiasInternacional1(titular1);
-					operaciones.noticiasInternacional2(titular2);
-					operaciones.noticiasInternacional3(titular3);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-				botonEconomia.setVisible(false);
-				botonDeportes.setVisible(false);
-				botonNacional.setVisible(false);
-				botonInternacional.setVisible(false);
-				botonVideojuegos.setVisible(false);
-				botonReligiosas.setVisible(false);
-				fuente1.setVisible(true);
-				fuente2.setVisible(true);
-				fuente3.setVisible(true);
-				titular1.setVisible(true);
-				titular2.setVisible(true);
-				titular3.setVisible(true);
-				botonVolver.setVisible(true);
-				botonVolverAdmin.setVisible(false);
+					titular1.setText(operaciones.noticiasInternacional1());
+    				titular2.setText(operaciones.noticiasInternacional2());
+    				titular3.setText(operaciones.noticiasInternacional3());
+					}catch(Exception ex) {
+						JOptionPane.showMessageDialog(null, "Error al obtener noticias Internacionales: " + ex.getMessage());
+					}
+					botonEconomia.setVisible(false);
+					botonDeportes.setVisible(false);
+					botonNacional.setVisible(false);
+					botonInternacional.setVisible(false);
+					botonVideojuegos.setVisible(false);
+					botonReligiosas.setVisible(false);
+					fuente1.setVisible(true);
+					fuente2.setVisible(true);
+					fuente3.setVisible(true);
+					titular1.setVisible(true);
+					titular2.setVisible(true);
+					titular3.setVisible(true);
+					botonVolver.setVisible(true);
+					botonVolverAdmin.setVisible(false);
 			}
 		});
 		add(botonInternacional);
@@ -179,112 +180,112 @@ public class pantallaNoticias extends JPanel {
 				fuente2.setText("Diario Público");
 				fuente3.setText("Xataka");
 				try {
-					operaciones.noticiasVideojuegos1(titular1);
-					operaciones.noticiasVideojuegos2(titular2);
-					operaciones.noticiasVideojuegos3(titular3);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-				botonEconomia.setVisible(false);
-				botonDeportes.setVisible(false);
-				botonNacional.setVisible(false);
-				botonInternacional.setVisible(false);
-				botonVideojuegos.setVisible(false);
-				botonReligiosas.setVisible(false);
-				fuente1.setVisible(true);
-				fuente2.setVisible(true);
-				fuente3.setVisible(true);
-				titular1.setVisible(true);
-				titular2.setVisible(true);
-				titular3.setVisible(true);
-				botonVolver.setVisible(true);
-				botonVolverAdmin.setVisible(false);
+					titular1.setText(operaciones.noticiasVideojuegos1());
+    				titular2.setText(operaciones.noticiasVideojuegos2());
+    				titular3.setText(operaciones.noticiasVideojuegos3());
+					}catch(Exception ex) {
+						JOptionPane.showMessageDialog(null, "Error al obtener noticias de Videojuegos: " + ex.getMessage());
+					}
+					botonEconomia.setVisible(false);
+					botonDeportes.setVisible(false);
+					botonNacional.setVisible(false);
+					botonInternacional.setVisible(false);
+					botonVideojuegos.setVisible(false);
+					botonReligiosas.setVisible(false);
+					fuente1.setVisible(true);
+					fuente2.setVisible(true);
+					fuente3.setVisible(true);
+					titular1.setVisible(true);
+					titular2.setVisible(true);
+					titular3.setVisible(true);
+					botonVolver.setVisible(true);
+					botonVolverAdmin.setVisible(false);
 			}
 		});
 		add(botonVideojuegos);
 
-		botonReligiosas = new JButton("Religiosas");
-		botonReligiosas.setBounds(510, 298, 160, 100);
-		botonReligiosas.setVisible(false);
-		botonReligiosas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				fuente1.setText("Vida Nueva");
-				fuente2.setText("Vatican News");
-				fuente3.setText("Religión en Libertad");
-				try {
-					operaciones.noticiasReligiosas1(titular1);
-					operaciones.noticiasReligiosas2(titular2);
-					operaciones.noticiasReligiosas3(titular3);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-				botonEconomia.setVisible(false);
-				botonDeportes.setVisible(false);
-				botonNacional.setVisible(false);
-				botonInternacional.setVisible(false);
-				botonVideojuegos.setVisible(false);
-				botonReligiosas.setVisible(false);
-				fuente1.setVisible(true);
-				fuente2.setVisible(true);
-				fuente3.setVisible(true);
-				titular1.setVisible(true);
-				titular2.setVisible(true);
-				titular3.setVisible(true);
-				botonVolver.setVisible(true);
-				botonVolverAdmin.setVisible(false);
-			}
-		});
-		add(botonReligiosas);
-
-		fuente1 = new JLabel("");
-		fuente1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		fuente1.setBounds(58, 116, 312, 17);
-		fuente1.setVisible(false);
-		add(fuente1);
-
-		fuente2 = new JLabel("");
-		fuente2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		fuente2.setBounds(58, 253, 312, 17);
-		fuente2.setVisible(false);
-		add(fuente2);
-
-		fuente3 = new JLabel("");
-		fuente3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		fuente3.setBounds(58, 390, 312, 17);
-		fuente3.setVisible(false);
-		add(fuente3);
-
-		titular1 = new JTextArea("");
-		titular1.setEditable(false);
-		titular1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		titular1.setLineWrap(true);
-		titular1.setBackground(null);
-		titular1.setBounds(58, 144, 442, 74);
-		titular1.setVisible(false);
-		add(titular1);
-
-		titular2 = new JTextArea("");
-		titular2.setLineWrap(true);
-		titular2.setEditable(false);
-		titular2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		titular2.setBounds(58, 281, 442, 74);
-		titular2.setBackground(null);
-		titular2.setVisible(false);
-		add(titular2);
-
-		titular3 = new JTextArea("");
-		titular3.setLineWrap(true);
-		titular3.setEditable(false);
-		titular3.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		titular3.setBounds(58, 418, 442, 74);
-		titular3.setBackground(null);
-		titular3.setVisible(false);
-		add(titular3);
-
-		botonVolver = new JButton("Volver");
-		botonVolver.setBounds(686, 489, 89, 23);
-		botonVolver.setVisible(false);
-		botonVolver.addActionListener(new ActionListener() {
+        botonReligiosas = new JButton("Religiosas");
+        botonReligiosas.setBounds(510, 298, 160, 100);
+        botonReligiosas.setVisible(false);
+        botonReligiosas.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		fuente1.setText("Vida Nueva");
+        		fuente2.setText("Vatican News");
+        		fuente3.setText("Religión en Libertad");
+        		try {
+    				titular1.setText(operaciones.noticiasReligiosas1());
+    				titular2.setText(operaciones.noticiasReligiosas2());
+    				titular3.setText(operaciones.noticiasReligiosas3());
+    				}catch(Exception ex) {
+    					JOptionPane.showMessageDialog(null, "Error al obtener noticias Religiosas: " + ex.getMessage());
+    				}
+    				botonEconomia.setVisible(false);
+    				botonDeportes.setVisible(false);
+    				botonNacional.setVisible(false);
+    				botonInternacional.setVisible(false);
+    				botonVideojuegos.setVisible(false);
+    				botonReligiosas.setVisible(false);
+    				fuente1.setVisible(true);
+    				fuente2.setVisible(true);
+    				fuente3.setVisible(true);
+    				titular1.setVisible(true);
+    				titular2.setVisible(true);
+    				titular3.setVisible(true);
+    				botonVolver.setVisible(true);
+    				botonVolverAdmin.setVisible(false);
+        	}
+        });
+        add(botonReligiosas);
+        
+        fuente1 = new JLabel("");
+        fuente1.setFont(new Font("Tahoma", Font.BOLD, 12));
+        fuente1.setBounds(58, 116, 312, 17);
+        fuente1.setVisible(false);
+        add(fuente1);
+        
+        fuente2 = new JLabel("");
+        fuente2.setFont(new Font("Tahoma", Font.BOLD, 12));
+        fuente2.setBounds(58, 253, 312, 17);
+        fuente2.setVisible(false);
+        add(fuente2);
+        
+        fuente3 = new JLabel("");
+        fuente3.setFont(new Font("Tahoma", Font.BOLD, 12));
+        fuente3.setBounds(58, 390, 312, 17);
+        fuente3.setVisible(false);
+        add(fuente3);
+        
+        titular1 = new JTextArea("");
+        titular1.setEditable(false);
+        titular1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        titular1.setLineWrap(true);
+        titular1.setBackground(null);
+        titular1.setBounds(58, 144, 442, 74);
+        titular1.setVisible(false);
+        add(titular1);
+        
+        titular2 = new JTextArea("");
+        titular2.setLineWrap(true);
+        titular2.setEditable(false);
+        titular2.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        titular2.setBounds(58, 281, 442, 74);
+        titular2.setBackground(null);
+        titular2.setVisible(false);
+        add(titular2);
+        
+        titular3 = new JTextArea("");
+        titular3.setLineWrap(true);
+        titular3.setEditable(false);
+        titular3.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        titular3.setBounds(58, 418, 442, 74);
+        titular3.setBackground(null);
+        titular3.setVisible(false);
+        add(titular3);
+        
+        botonVolver = new JButton("Volver");
+        botonVolver.setBounds(686, 489, 89, 23);
+        botonVolver.setVisible(false);
+        botonVolver.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fuente1.setVisible(false);
@@ -293,22 +294,10 @@ public class pantallaNoticias extends JPanel {
 				titular1.setVisible(false);
 				titular2.setVisible(false);
 				titular3.setVisible(false);
-				//
-				// AL VOLVER SE MUESTRAN TODAS LAS NOTICIAS, ENCONTRAR LA LÓGICAS PRA COMPROBAR
-				// EL USER
-				//
-				/*
-				 * botonEconomia.setVisible(true);
-				 * botonDeportes.setVisible(true);
-				 * botonNacional.setVisible(true);
-				 * botonInternacional.setVisible(true);
-				 * botonVideojuegos.setVisible(true);
-				 * botonReligiosas.setVisible(true);
-				 */
 				botonVolver.setVisible(false);
 				mostrarBotones();
 				comprobarAdmin();
-				// botonVolverAdmin.setVisible(true);
+				
 			}
 		});
 		add(botonVolver);
