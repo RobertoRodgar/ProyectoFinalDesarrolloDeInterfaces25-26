@@ -79,7 +79,7 @@ public class pantallaGuardarPreferencias extends JPanel {
         add(botonReligiosas);
         
         botonSiguiente = new JButton("Guardar y siguiente");
-        botonSiguiente.setBounds(617, 465, 127, 23);
+        botonSiguiente.setBounds(579, 465, 165, 23);
         botonSiguiente.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
