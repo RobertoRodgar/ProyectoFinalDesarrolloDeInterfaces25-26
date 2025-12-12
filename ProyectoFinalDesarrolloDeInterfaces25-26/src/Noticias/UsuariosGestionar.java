@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class UsuariosGestionar {
-	File archivoUsuarios = new File("Extras/TXTs/usuarios2.txt");
+	File archivoUsuarios = new File("Extras/TXTs/usuarios.txt");
 	
 	public ArrayList<Usuario> iniciarUsuarios(ArrayList<Usuario> listaUsuarios) {
 		Usuario usuarioTemp = null;

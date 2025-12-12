@@ -1,7 +1,6 @@
 package Noticias;
 
 import java.awt.CardLayout;
-import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.time.LocalDateTime;
@@ -12,11 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
-
-
-
-public class Marco extends JFrame{
+public class Marco extends JFrame {
 	ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
 	CardLayout cardLayout;
 	JPanel contentPane;
@@ -27,6 +22,7 @@ public class Marco extends JFrame{
 	pantallaGuardarPreferencias pantallaGuardarPreferencias;
 	pantallaUsuario pantallaUsuario;
 	Operaciones operaciones = new Operaciones();
+
 	public Marco(ArrayList<Usuario> listaUsuarios) {
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
@@ -46,14 +42,14 @@ public class Marco extends JFrame{
 		});
 		ImageIcon np = new ImageIcon("Extras/Imagenes/np.png");
 		setTitle("Noticias");
-		setBounds(100,100,800,600);
+		setBounds(100, 100, 800, 600);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setIconImage(np.getImage());
-		
+
 		cardLayout = new CardLayout();
 		contentPane = new JPanel(cardLayout);
-        setContentPane(contentPane);
+		setContentPane(contentPane);
 
 		iniciarSesion = new iniciarSesion(this, listaUsuarios);
 		pantallaAdminInicio = new pantallaAdminInicio(this, listaUsuarios);
@@ -61,69 +57,67 @@ public class Marco extends JFrame{
 		pantallaNoticias = new pantallaNoticias(this, listaUsuarios);
 		pantallaGuardarPreferencias = new pantallaGuardarPreferencias(this);
 		pantallaUsuario = new pantallaUsuario(this);
-		
+
 		contentPane.add(iniciarSesion, "IniciarSesion");
-        contentPane.add(pantallaAdminInicio, "PantallaInicioAdmin");
-        contentPane.add(pantallaAcercaDe, "PantallaAcercaDe");
-        contentPane.add(pantallaNoticias, "PantallaNoticias");
-        contentPane.add(pantallaGuardarPreferencias, "PantallaGuardarPreferencias");
-        contentPane.add(pantallaUsuario, "PantallaUsuario");
-		
-        cardLayout.show(contentPane, "IniciarSesion");
-        
-        this.setJMenuBar(MenuBar.getMenuBar(this));
-		
+		contentPane.add(pantallaAdminInicio, "PantallaInicioAdmin");
+		contentPane.add(pantallaAcercaDe, "PantallaAcercaDe");
+		contentPane.add(pantallaNoticias, "PantallaNoticias");
+		contentPane.add(pantallaGuardarPreferencias, "PantallaGuardarPreferencias");
+		contentPane.add(pantallaUsuario, "PantallaUsuario");
+
+		cardLayout.show(contentPane, "IniciarSesion");
+
+		this.setJMenuBar(MenuBar.getMenuBar(this));
+		comprobarHora();
 	}
-	
-	
-	
+
 	public void mostrarPantallaInicio() {
 		cardLayout.show(contentPane, "IniciarSesion");
 	}
-	
+
 	public void mostrarPantallaAdmin(Usuario usuario) {
 		pantallaAdminInicio.establecerUsuario(usuario);
 		cardLayout.show(contentPane, "PantallaInicioAdmin");
 	}
-	
+
 	public void mostrarPantallaAdminVolver() {
 		cardLayout.show(contentPane, "PantallaInicioAdmin");
 	}
-	
+
 	public void mostrarPantallaAcercaDe() {
 		cardLayout.show(contentPane, "PantallaAcercaDe");
 	}
-	
+
 	public void mostrarPantallaNoticias(Usuario usuario) {
 		pantallaNoticias.establecerUsuario(usuario);
 		cardLayout.show(contentPane, "PantallaNoticias");
 	}
-	
+
 	public void mostrarPantallaGuardarPreferencias(Usuario usuario) {
 		pantallaGuardarPreferencias.establecerUsuario(usuario);
 		cardLayout.show(contentPane, "PantallaGuardarPreferencias");
 	}
-	
+
 	public void mostrarPantallaUsuario(Usuario usuario) {
 		pantallaUsuario.establecerUsuario(usuario);
 		cardLayout.show(contentPane, "PantallaUsuario");
 	}
-	
+
 	public void mostrarPantallaUsuarioVolver() {
 		cardLayout.show(contentPane, "PantallaUsuario");
 	}
-	
+
 	public void comprobarHora() {
 		Thread hilo = new Thread(() -> {
-			while(true) {
+			while (true) {
 				try {
 					int hora = Integer.parseInt(operaciones.obtenerHora());
 					LocalDateTime tiempo = LocalDateTime.now();
-					if(hora == tiempo.getHour() && tiempo.getMinute() == 0) {
-						for(Usuario usuario : listaUsuarios) {
-							if(!usuario.getEsAdmin()) {
+					if (hora == tiempo.getHour() && tiempo.getMinute() == 0) {
+						for (Usuario usuario : listaUsuarios) {
+							if (!usuario.getEsAdmin()) {
 								String cuerpo = SimpleEmail.cuerpoMensaje(usuario);
-								if(!cuerpo.isEmpty()) {
+								if (!cuerpo.isEmpty()) {
 									String toEmail = usuario.getEmail();
 									SimpleEmail.enviarNoticias(toEmail, cuerpo);
 								}
@@ -131,7 +125,7 @@ public class Marco extends JFrame{
 						}
 					}
 					Thread.sleep(60000);
-				}catch(Exception e) {
+				} catch (Exception e) {
 					System.out.println("Ha ocurrido un error inexperado");
 				}
 			}
@@ -139,8 +133,8 @@ public class Marco extends JFrame{
 		hilo.setDaemon(true);
 		hilo.start();
 	}
-	
+
 	public void enviarNoticias() {
-		
+
 	}
 }
