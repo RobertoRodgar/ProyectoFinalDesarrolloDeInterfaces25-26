@@ -146,7 +146,7 @@ public class pantallaAdminInicio extends JPanel {
 		titulosCrear = new JLabel("Introduce el correo:");
 		titulosCrear.setFont(new Font("Tahoma", Font.BOLD, 14));
 		titulosCrear.setHorizontalAlignment(SwingConstants.CENTER);
-		titulosCrear.setBounds(90, 26, 210, 35);
+		titulosCrear.setBounds(39, 26, 323, 35);
 		panelCrear.add(titulosCrear);
 
 		textosCrear = new JTextField();
