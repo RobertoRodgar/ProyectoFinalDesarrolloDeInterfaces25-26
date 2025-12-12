@@ -2,11 +2,17 @@ package Noticias;
 
 import java.awt.CardLayout;
 import java.awt.Image;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+
 
 
 
@@ -20,8 +26,24 @@ public class Marco extends JFrame{
 	pantallaNoticias pantallaNoticias;
 	pantallaGuardarPreferencias pantallaGuardarPreferencias;
 	pantallaUsuario pantallaUsuario;
-	
+	Operaciones operaciones = new Operaciones();
 	public Marco(ArrayList<Usuario> listaUsuarios) {
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+
+			public void windowClosing(WindowEvent e) {
+
+				if (JOptionPane.showConfirmDialog(null, "Seguro que quiere salir?", "Confirmación",
+
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+					System.exit(0);
+
+				}
+
+			}
+
+		});
 		ImageIcon np = new ImageIcon("Extras/Imagenes/np.png");
 		setTitle("Noticias");
 		setBounds(100,100,800,600);
@@ -48,7 +70,8 @@ public class Marco extends JFrame{
         contentPane.add(pantallaUsuario, "PantallaUsuario");
 		
         cardLayout.show(contentPane, "IniciarSesion");
-
+        
+        this.setJMenuBar(MenuBar.getMenuBar(this));
 		
 	}
 	
@@ -88,5 +111,36 @@ public class Marco extends JFrame{
 	
 	public void mostrarPantallaUsuarioVolver() {
 		cardLayout.show(contentPane, "PantallaUsuario");
+	}
+	
+	public void comprobarHora() {
+		Thread hilo = new Thread(() -> {
+			while(true) {
+				try {
+					int hora = Integer.parseInt(operaciones.obtenerHora());
+					LocalDateTime tiempo = LocalDateTime.now();
+					if(hora == tiempo.getHour() && tiempo.getMinute() == 0) {
+						for(Usuario usuario : listaUsuarios) {
+							if(!usuario.getEsAdmin()) {
+								String cuerpo = SimpleEmail.cuerpoMensaje(usuario);
+								if(!cuerpo.isEmpty()) {
+									String toEmail = usuario.getEmail();
+									SimpleEmail.enviarNoticias(toEmail, cuerpo);
+								}
+							}
+						}
+					}
+					Thread.sleep(60000);
+				}catch(Exception e) {
+					System.out.println("Ha ocurrido un error inexperado");
+				}
+			}
+		});
+		hilo.setDaemon(true);
+		hilo.start();
+	}
+	
+	public void enviarNoticias() {
+		
 	}
 }

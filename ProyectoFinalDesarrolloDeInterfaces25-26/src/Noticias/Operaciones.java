@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -12,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
@@ -24,6 +26,7 @@ public class Operaciones {
 	private int inicioAnadir;
 	private File archivoUsuarios = new File("Extras/TXTs/usuarios2.txt");
 	private File configs = new File("Extras/TXTs/configuraciones.txt");
+	private File archivoLog = new File("Extras/TXTs/log.txt");
 	private SacarTitular sacarTitular = new SacarTitular();
 	
 	public void ocultarContraseña(JPasswordField campoContraseña, char caracter, JButton botonOcultarContrasena) {
@@ -203,122 +206,122 @@ public class Operaciones {
         }
 	}
 	
-	public void noticiasEconomia1(JTextArea titular) throws IOException {
+	public String noticiasEconomia1() throws IOException {
 		String web = extraerWeb("Economia", 1);
 		String aBuscar = extraerABuscar("Economia", 2);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
-	public void noticiasEconomia2(JTextArea titular) throws IOException {
+	public String noticiasEconomia2() throws IOException {
 		String web = extraerWeb("Economia", 3);
 		String aBuscar = extraerABuscar("Economia", 4);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
-	public void noticiasEconomia3(JTextArea titular) throws IOException {
+	public String noticiasEconomia3() throws IOException {
 		String web = extraerWeb("Economia", 5);
 		String aBuscar = extraerABuscar("Economia", 6);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
 	
 
-	public void noticiasDeportes1(JTextArea titular) throws IOException {
+	public String noticiasDeportes1() throws IOException {
 		String web = extraerWeb("Deportes", 1);
 		String aBuscar = extraerABuscar("Deportes", 2);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
-	public void noticiasDeportes2(JTextArea titular) throws IOException {
+	public String noticiasDeportes2() throws IOException {
 		String web = extraerWeb("Deportes", 3);
 		String aBuscar = extraerABuscar("Deportes", 4);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
-	public void noticiasDeportes3(JTextArea titular) throws IOException {
+	public String noticiasDeportes3() throws IOException {
 		String web = extraerWeb("Deportes", 5);
 		String aBuscar = extraerABuscar("Deportes", 6);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
 	
 
-	public void noticiasNacional1(JTextArea titular) throws IOException {
+	public String noticiasNacional1() throws IOException {
 		String web = extraerWeb("Nacional", 1);
 		String aBuscar = extraerABuscar("Nacional", 2);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
-	public void noticiasNacional2(JTextArea titular) throws IOException {
+	public String noticiasNacional2() throws IOException {
 		String web = extraerWeb("Nacional", 3);
 		String aBuscar = extraerABuscar("Nacional", 4);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
-	public void noticiasNacional3(JTextArea titular) throws IOException {
+	public String noticiasNacional3() throws IOException {
 		String web = extraerWeb("Nacional", 5);
 		String aBuscar = extraerABuscar("Nacional", 6);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
 
 	
-	public void noticiasInternacional1(JTextArea titular) throws IOException {
+	public String noticiasInternacional1() throws IOException {
 		String web = extraerWeb("Internacional", 1);
 		String aBuscar = extraerABuscar("Internacional", 2);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
-	public void noticiasInternacional2(JTextArea titular) throws IOException {
+	public String noticiasInternacional2() throws IOException {
 		String web = extraerWeb("Internacional", 3);
 		String aBuscar = extraerABuscar("Internacional", 4);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
-	public void noticiasInternacional3(JTextArea titular) throws IOException {
+	public String noticiasInternacional3() throws IOException {
 		String web = extraerWeb("Internacional", 5);
 		String aBuscar = extraerABuscar("Internacional", 6);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
 
 	
-	public void noticiasVideojuegos1(JTextArea titular) throws IOException {
+	public String noticiasVideojuegos1() throws IOException {
 		String web = extraerWeb("Videojuegos", 1);
 		String aBuscar = extraerABuscar("Videojuegos", 2);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
-	public void noticiasVideojuegos2(JTextArea titular) throws IOException {
+	public String noticiasVideojuegos2() throws IOException {
 		String web = extraerWeb("Videojuegos", 3);
 		String aBuscar = extraerABuscar("Videojuegos", 4);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
-	public void noticiasVideojuegos3(JTextArea titular) throws IOException {
+	public String noticiasVideojuegos3() throws IOException {
 		String web = extraerWeb("Videojuegos", 5);
 		String aBuscar = extraerABuscar("Videojuegos", 6);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
 	
 	
-	public void noticiasReligiosas1(JTextArea titular) throws IOException {
+	public String noticiasReligiosas1() throws IOException {
 		String web = extraerWeb("Religiosas", 1);
 		String aBuscar = extraerABuscar("Religiosas", 2);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
-	public void noticiasReligiosas2(JTextArea titular) throws IOException {
+	public String noticiasReligiosas2() throws IOException {
 		String web = extraerWeb("Religiosas", 3);
 		String aBuscar = extraerABuscar("Religiosas", 4);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
-	public void noticiasReligiosas3(JTextArea titular) throws IOException {
+	public String noticiasReligiosas3() throws IOException {
 		String web = extraerWeb("Religiosas", 5);
 		String aBuscar = extraerABuscar("Religiosas", 6);
-		titular.setText(sacarTitular.sacarTitular(web, aBuscar));
+		return sacarTitular.sacarTitular(web, aBuscar);
 	}
 	
 	
@@ -424,4 +427,86 @@ public class Operaciones {
             System.out.println("Ha ocurrido un error inesperado.");
         }
 	}
+	
+	public String obtenerFrom() {
+		String[] datos = null;
+		try (BufferedReader br = new BufferedReader(new FileReader(configs))) {
+            String lineaTemp;
+            while ((lineaTemp = br.readLine()) != null) {
+                datos = lineaTemp.split(";");
+                if(datos[0].equals("fromEmail")) {
+                	break;
+                }
+            }
+            return datos[1];
+        } catch (Exception e) {
+        	System.out.println("Ha ocurrido un error inesperado.");
+        	return null;
+        }
+	}
+	
+	public String obtenerPass() {
+		String[] datos = null;
+		try (BufferedReader br = new BufferedReader(new FileReader(configs))) {
+            String lineaTemp;
+            while ((lineaTemp = br.readLine()) != null) {
+                datos = lineaTemp.split(";");
+                if(datos[0].equals("password")) {
+                	break;
+                }
+            }
+            return datos[1];
+        } catch (Exception e) {
+        	System.out.println("Ha ocurrido un error inesperado.");
+        	return null;
+        }
+	}
+	
+	public String obtenerHora() {
+		String[] datos = null;
+		try (BufferedReader br = new BufferedReader(new FileReader(configs))) {
+            String lineaTemp;
+            while ((lineaTemp = br.readLine()) != null) {
+                datos = lineaTemp.split(";");
+                if(datos[0].equals("Hora")) {
+                	break;
+                }
+            }
+            return datos[1];
+        } catch (Exception e) {
+        	System.out.println("Ha ocurrido un error inesperado.");
+        	return null;
+        }
+	}
+	
+	public void guardarNoticias(Usuario usuario) throws IOException {
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("DD-MM-YYYY");
+		LocalDate hoy = LocalDate.now();
+		LocalDateTime tiempo = LocalDateTime.now();
+		int hora = tiempo.getHour();
+		int minuto = tiempo.getMinute();
+		
+		ArrayList<String> lineas = new ArrayList<String>();
+		
+		try (BufferedReader br = new BufferedReader(new FileReader(archivoLog))) {
+            String lineaTemp;
+            while ((lineaTemp = br.readLine()) != null) {
+				lineas.add(lineaTemp);
+            }
+        } catch (Exception e) {
+        	System.out.println("Ha ocurrido un error inesperado.");
+        }
+		String lineaNueva = "";
+		lineaNueva += usuario.getNombre() + " " + hora + ":" + minuto + "\n" + SimpleEmail.cuerpoMensaje(usuario);
+		lineas.add(lineaNueva);
+		try (FileWriter fw = new FileWriter(archivoLog)) {
+            
+            for (String lineaEscribir : lineas) {
+                fw.write(lineaEscribir + "\n"); 
+            }
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error inesperado.");
+        }
+	}
+	
 }

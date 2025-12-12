@@ -3,6 +3,7 @@ package Noticias;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -43,11 +44,11 @@ public class pantallaNoticias extends JPanel{
 				fuente2.setText("El Economista");
 				fuente3.setText("El Mundo");
 				try {
-				operaciones.noticiasEconomia1(titular1);
-				operaciones.noticiasEconomia2(titular2);
-				operaciones.noticiasEconomia3(titular3);
+					titular1.setText(operaciones.noticiasEconomia1());
+    				titular2.setText(operaciones.noticiasEconomia2());
+    				titular3.setText(operaciones.noticiasEconomia3());
 				}catch(Exception ex) {
-					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al obtener noticias de Economía: " + ex.getMessage());
 				}
 				botonEconomia.setVisible(false);
 				botonDeportes.setVisible(false);
@@ -77,11 +78,11 @@ public class pantallaNoticias extends JPanel{
 				fuente2.setText("RTVE.es");
 				fuente3.setText("Mundo Deportivo");
 				try {
-					operaciones.noticiasDeportes1(titular1);
-					operaciones.noticiasDeportes2(titular2);
-					operaciones.noticiasDeportes3(titular3);
+					titular1.setText(operaciones.noticiasDeportes1());
+    				titular2.setText(operaciones.noticiasDeportes2());
+    				titular3.setText(operaciones.noticiasDeportes3());
 					}catch(Exception ex) {
-						ex.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Error al obtener noticias de Deportes: " + ex.getMessage());
 					}
 					botonEconomia.setVisible(false);
 					botonDeportes.setVisible(false);
@@ -111,11 +112,11 @@ public class pantallaNoticias extends JPanel{
 				fuente2.setText("La Razón");
 				fuente3.setText("Europa Press");
 				try {
-					operaciones.noticiasNacional1(titular1);
-					operaciones.noticiasNacional2(titular2);
-					operaciones.noticiasNacional3(titular3);
+					titular1.setText(operaciones.noticiasNacional1());
+    				titular2.setText(operaciones.noticiasNacional2());
+    				titular3.setText(operaciones.noticiasNacional3());
 					}catch(Exception ex) {
-						ex.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Error al obtener noticias de Nacional: " + ex.getMessage());
 					}
 					botonEconomia.setVisible(false);
 					botonDeportes.setVisible(false);
@@ -145,11 +146,11 @@ public class pantallaNoticias extends JPanel{
 				fuente2.setText("BBC");
 				fuente3.setText("20Minutos");
 				try {
-					operaciones.noticiasInternacional1(titular1);
-					operaciones.noticiasInternacional2(titular2);
-					operaciones.noticiasInternacional3(titular3);
+					titular1.setText(operaciones.noticiasInternacional1());
+    				titular2.setText(operaciones.noticiasInternacional2());
+    				titular3.setText(operaciones.noticiasInternacional3());
 					}catch(Exception ex) {
-						ex.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Error al obtener noticias Internacionales: " + ex.getMessage());
 					}
 					botonEconomia.setVisible(false);
 					botonDeportes.setVisible(false);
@@ -179,11 +180,11 @@ public class pantallaNoticias extends JPanel{
 				fuente2.setText("Diario Público");
 				fuente3.setText("Xataka");
 				try {
-					operaciones.noticiasVideojuegos1(titular1);
-					operaciones.noticiasVideojuegos2(titular2);
-					operaciones.noticiasVideojuegos3(titular3);
+					titular1.setText(operaciones.noticiasVideojuegos1());
+    				titular2.setText(operaciones.noticiasVideojuegos2());
+    				titular3.setText(operaciones.noticiasVideojuegos3());
 					}catch(Exception ex) {
-						ex.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Error al obtener noticias de Videojuegos: " + ex.getMessage());
 					}
 					botonEconomia.setVisible(false);
 					botonDeportes.setVisible(false);
@@ -212,11 +213,11 @@ public class pantallaNoticias extends JPanel{
         		fuente2.setText("Vatican News");
         		fuente3.setText("Religión en Libertad");
         		try {
-    				operaciones.noticiasReligiosas1(titular1);
-    				operaciones.noticiasReligiosas2(titular2);
-    				operaciones.noticiasReligiosas3(titular3);
+    				titular1.setText(operaciones.noticiasReligiosas1());
+    				titular2.setText(operaciones.noticiasReligiosas2());
+    				titular3.setText(operaciones.noticiasReligiosas3());
     				}catch(Exception ex) {
-    					ex.printStackTrace();
+    					JOptionPane.showMessageDialog(null, "Error al obtener noticias Religiosas: " + ex.getMessage());
     				}
     				botonEconomia.setVisible(false);
     				botonDeportes.setVisible(false);
@@ -293,19 +294,10 @@ public class pantallaNoticias extends JPanel{
 				titular1.setVisible(false);
 				titular2.setVisible(false);
 				titular3.setVisible(false);
-				//
-				//AL VOLVER SE MUESTRAN TODAS LAS NOTICIAS, ENCONTRAR LA LÓGICAS PRA COMPROBAR EL USER
-				//
-				/*botonEconomia.setVisible(true);
-				botonDeportes.setVisible(true);
-				botonNacional.setVisible(true);
-				botonInternacional.setVisible(true);
-				botonVideojuegos.setVisible(true);
-				botonReligiosas.setVisible(true);*/
 				botonVolver.setVisible(false);
 				mostrarBotones();
 				comprobarAdmin();
-				//botonVolverAdmin.setVisible(true);
+				
 			}
 		});
         add(botonVolver);
