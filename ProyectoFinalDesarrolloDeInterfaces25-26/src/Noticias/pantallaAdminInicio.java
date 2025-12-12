@@ -46,7 +46,6 @@ public class pantallaAdminInicio extends JPanel {
 	private JLabel textoError;
 	private JButton botonVolver;
 	private Operaciones operaciones = new Operaciones();
-	private JLabel textotemp;
 	private int contador = 0;
 	private JButton botonCerrarCrear;
 	private JButton botonCerrarBorrar;
@@ -288,10 +287,6 @@ public class pantallaAdminInicio extends JPanel {
 		});
 		panelGestionarUsuario.add(botonVolver);
 
-		textotemp = new JLabel();
-		textotemp.setBounds(42, 38, 89, 33);
-		panelCuerpo.add(textotemp);
-
 		botonGestionarUsuarios = new JButton("Gestionar usuarios");
 		botonGestionarUsuarios.setFont(new Font("Tahoma", Font.BOLD, 16));
 		botonGestionarUsuarios.setBounds(128, 110, 195, 113);
@@ -359,8 +354,5 @@ public class pantallaAdminInicio extends JPanel {
 	public void establecerUsuario(Usuario usuario) {
 		this.usuario = usuario;
 
-		if (usuario != null) {
-			textotemp.setText(usuario.getNombre());
-		}
 	}
 }

@@ -17,7 +17,6 @@ public class Marco extends JFrame {
 	JPanel contentPane;
 	iniciarSesion iniciarSesion;
 	pantallaAdminInicio pantallaAdminInicio;
-	pantallaAcercaDe pantallaAcercaDe;
 	pantallaNoticias pantallaNoticias;
 	pantallaGuardarPreferencias pantallaGuardarPreferencias;
 	pantallaUsuario pantallaUsuario;
@@ -53,14 +52,12 @@ public class Marco extends JFrame {
 
 		iniciarSesion = new iniciarSesion(this, listaUsuarios);
 		pantallaAdminInicio = new pantallaAdminInicio(this, listaUsuarios);
-		pantallaAcercaDe = new pantallaAcercaDe(this);
 		pantallaNoticias = new pantallaNoticias(this, listaUsuarios);
 		pantallaGuardarPreferencias = new pantallaGuardarPreferencias(this);
 		pantallaUsuario = new pantallaUsuario(this);
 
 		contentPane.add(iniciarSesion, "IniciarSesion");
 		contentPane.add(pantallaAdminInicio, "PantallaInicioAdmin");
-		contentPane.add(pantallaAcercaDe, "PantallaAcercaDe");
 		contentPane.add(pantallaNoticias, "PantallaNoticias");
 		contentPane.add(pantallaGuardarPreferencias, "PantallaGuardarPreferencias");
 		contentPane.add(pantallaUsuario, "PantallaUsuario");
@@ -82,10 +79,6 @@ public class Marco extends JFrame {
 
 	public void mostrarPantallaAdminVolver() {
 		cardLayout.show(contentPane, "PantallaInicioAdmin");
-	}
-
-	public void mostrarPantallaAcercaDe() {
-		cardLayout.show(contentPane, "PantallaAcercaDe");
 	}
 
 	public void mostrarPantallaNoticias(Usuario usuario) {
