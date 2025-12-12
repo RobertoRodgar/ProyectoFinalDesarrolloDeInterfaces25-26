@@ -202,10 +202,36 @@ public class Operaciones {
 				textoError.setText("Se ha borrado al usuario con éxito.");
 				listaUsuarios.remove(usuarioBorrar);
 				borrarUsuarioTxt(usuarioBorrar);
+				borrarPreferenciasUsaurio(usuarioBorrar);
 			}
 		}
 	}
 
+	public void borrarPreferenciasUsaurio(Usuario usuarioBorrar) {
+		ArrayList<String> lineas = new ArrayList<String>();
+		try (BufferedReader br = new BufferedReader(new FileReader(configs))) {
+			String lineaTemp;
+			String[] parametros;
+			while ((lineaTemp = br.readLine()) != null) {
+				parametros = lineaTemp.split(";");
+				if (!parametros[0].equals(usuarioBorrar.getNombre())) {
+					lineas.add(lineaTemp);
+				}
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado al leer para borrar.", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		try (FileWriter fw = new FileWriter(configs)) {
+			for (String lineaEscribir : lineas) {
+				fw.write(lineaEscribir + "\n");
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado al reescribir tras borrar.", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
 	public void borrarUsuarioTxt(Usuario usuarioBorrar) {
 		ArrayList<String> lineas = new ArrayList<String>();
 
