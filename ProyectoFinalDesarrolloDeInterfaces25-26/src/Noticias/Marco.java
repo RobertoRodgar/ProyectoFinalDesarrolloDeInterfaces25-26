@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 public class Marco extends JFrame {
 	ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
@@ -119,7 +120,7 @@ public class Marco extends JFrame {
 					}
 					Thread.sleep(60000);
 				} catch (Exception e) {
-					System.out.println("Ha ocurrido un error inexperado");
+					JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado.", "Error",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

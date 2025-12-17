@@ -3,6 +3,7 @@ package Noticias;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -17,6 +18,9 @@ public class PantallaCarga extends JWindow{
 	Timer tiempo;
 	int i = 0;
 	ImageIcon np = new ImageIcon("Extras/Imagenes/np.png");
+	private File archivoUsuarios = new File("Extras/TXTs/usuarios.txt");
+	private File configs = new File("Extras/TXTs/configuraciones.txt");
+	private File archivoLog = new File("Extras/TXTs/log.txt");
 	public PantallaCarga (final ArrayList<Usuario> listaUsuarios) {
 		JLabel panelFondo = new JLabel(np);
 		panelFondo.setLayout(new BorderLayout());
@@ -39,8 +43,8 @@ public class PantallaCarga extends JWindow{
 				if(i==80) {
 					UsuariosGestionar gestion = new UsuariosGestionar();
 					gestion.iniciarUsuarios(listaUsuarios);
-					if(listaUsuarios.isEmpty()) {
-						JOptionPane.showMessageDialog(null, "Error crítico: No se han podido cargar los usuarios. La aplicación se cerrará.");
+					if(listaUsuarios.isEmpty() || !archivoUsuarios.exists() || !configs.exists() || !archivoLog.exists()) {
+						JOptionPane.showMessageDialog(null, "Error crítico: No se han podido cargar los usuarios o los archivos. La aplicación se cerrará.");
 						tiempo.stop();
 						dispose();
 					}
