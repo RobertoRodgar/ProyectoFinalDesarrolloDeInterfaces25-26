@@ -1,6 +1,7 @@
 package Noticias;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -98,7 +99,7 @@ public class iniciarSesion extends JPanel{
 						frame.mostrarPantallaUsuario(usuarioIniciado);
 					}
 				}else {
-					System.out.println("Ha ocurrido un error inesperado...");
+					JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado...");
 				}
 			}
 		});
