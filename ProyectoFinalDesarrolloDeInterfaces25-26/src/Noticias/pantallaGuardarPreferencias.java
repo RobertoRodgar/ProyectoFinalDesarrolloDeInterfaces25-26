@@ -121,7 +121,7 @@ public class pantallaGuardarPreferencias extends JPanel {
         textoError = new JLabel("");
         textoError.setFont(new Font("Tahoma", Font.BOLD, 13));
         textoError.setHorizontalAlignment(SwingConstants.CENTER);
-        textoError.setBounds(208, 419, 380, 30);
+        textoError.setBounds(100, 419, 607, 30);
         add(textoError);
         
         
