@@ -2,7 +2,7 @@ package Noticias;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
-
+import javax.swing.JOptionPane;
 public class Main {
 	public static ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
 
@@ -17,9 +17,7 @@ public class Main {
 					ventanaCarga.setVisible(true);
 
 				} catch (Exception e) {
-					javax.swing.JOptionPane.showMessageDialog(null,
-							"Error fatal al iniciar la aplicación: " + e.getMessage(), "Error",
-							javax.swing.JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Error fatal al iniciar la aplicación: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 
 			}

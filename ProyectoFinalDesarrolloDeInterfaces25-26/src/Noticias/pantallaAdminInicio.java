@@ -189,6 +189,7 @@ public class pantallaAdminInicio extends JPanel {
 		botonCerrarCrear.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				titulosCrear.setText("Introduce el correo:");
 				panelCrear.setVisible(false);
 				botonCrear.setVisible(true);
 				botonBorrar.setVisible(true);
@@ -229,6 +230,8 @@ public class pantallaAdminInicio extends JPanel {
 		botonCerrarBorrar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				textoErrorBorrar.setText("");
+				textosBorrar.setText("");
 				panelBorrar.setVisible(false);
 				botonCrear.setVisible(true);
 				botonBorrar.setVisible(true);
